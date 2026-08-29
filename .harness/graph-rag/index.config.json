@@ -1,0 +1,28 @@
+{
+  "$comment": "Graph RAG indexing config. Scan order = dependency-safe order (configs first, then layouts, then components, then pages/content). Regenerate codegraph.md top-to-bottom.",
+  "version": "1.0",
+  "root": ".",
+  "scanOrder": [
+    { "glob": "*.mjs", "nodeType": "cfg", "reason": "tailwind + astro configs define token & build contracts" },
+    { "glob": "public/*", "nodeType": "ast", "reason": "crawler-facing assets (llm.txt, robots, _headers)" },
+    { "glob": "src/layouts/*.astro", "nodeType": "lay", "reason": "layout shell owns SEO/schema injection" },
+    { "glob": "src/components/*.astro", "nodeType": "cmp", "reason": "leaf units; import edges resolved here" },
+    { "glob": "src/pages/**/*.astro", "nodeType": "page", "reason": "routes compose layouts + components" },
+    { "glob": "src/content/**", "nodeType": "cnt", "reason": "collections scanned as single nodes, not per-file" },
+    { "glob": "src/lib/*.js", "nodeType": "cmp", "reason": "schema/helpers are shared leaves" }
+  ],
+  "exclude": ["node_modules/**", "dist/**", ".harness/**"],
+  "edgeRules": {
+    "imports": "parse front-matter import statements in .astro/.js",
+    "renders": "parse <ComponentName /> usage in templates",
+    "belongs-to": "layout front-matter prop or collection directory",
+    "constrained-by": "static map below",
+    "feeds": "files under public/ referenced by llm-crawlers"
+  },
+  "constraintMap": {
+    "any .astro with styling": ".harness/specs/brand.md",
+    "all pages + layouts": ".harness/specs/architecture.md",
+    "BaseLayout + pages": ".harness/specs/seo-schema.md"
+  },
+  "regeneration": "manual per SPEC.md until repo > 50 files, then automate scanOrder"
+}

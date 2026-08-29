@@ -1,0 +1,18 @@
+# Lessons & Gotchas (append-only)
+
+> Post-task learnings every agent must consult before writing.
+> Format: `- date | area | lesson`
+
+- 2026-08-25 | business | The $300 flat outbound package yielded ~$61 profit per client over 2 months — never reintroduce flat one-shot infra pricing; setup fee + retainer only.
+- 2026-08-25 | brand | "Via login" LinkedIn reselling attached to SyncLead branding is a liability vector; keep burner-channel offers completely disconnected from Marketio/SyncLead domains and footers.
+- 2026-08-25 | seo | Prior site was technically excellent but conversion-poor; SEO metrics are vanity without pipeline — every page must drive to a discovery call.
+- 2026-08-25 | synclead | Product promise language: context of the original outreach must flow losslessly into SyncLead scheduling/replies — use "zero data loss" framing on integration surfaces.
+- 2026-08-26 | brand | Legacy live site (marketio.net) uses `#f15e18` orange / `#0a0a0a` bg / `#e8e8e8` text — off-palette vs locked tokens (`#FF5500`/`#0B0B0B`/`#FAFAFA`). When porting any legacy content, never lift inline colors; restyle to spec tokens.
+- 2026-08-26 | legal | Live footer ships 5 legal docs (privacy, terms, cookies, acceptable-use, security) but specs/architecture.md plans only 4 (terms, privacy, dpa, sla). Reconcile set before scaffolding src/pages/legal/ — either add the 3 missing pages to the tree or drop the footer links.
+- 2026-08-26 | seo | Legacy legal pages omit `<meta robots>` and `og:image`; new BaseLayout must emit both per specs/seo-schema.md. Terms copy still describes monthly SaaS subscriptions — conflicts with ADR-001 service-agency positioning; rewrite during migration.
+- 2026-08-29 | legal | Created Privacy, Terms, Cookie, Acceptable Use, and Security policy pages under `src/pages/legal/` using semantic HTML5, explicit Tailwind styling matching brand spec, and set robots to 'noindex,follow' for legal safety in layout invocation.
+- 2026-08-29 | pages | Created standard Careers ([`src/pages/careers.astro`](src/pages/careers.astro)) and Contact ([`src/pages/contact.astro`](src/pages/contact.astro)) pages with agency-focused conversion triggers and footer integration ([`src/components/Footer.astro`](src/components/Footer.astro)). Build passes.
+- 2026-08-29 | brand | Removed all "SyncLead" branding from public-facing nav/footer — renamed to "Pipeline Sync" with route `/pipeline-sync/`. Internal tool names are permanently banned from public copy per `specs/brand.md`. Also fixed careers page section overlap (switched from margin-based to padding-based section spacing) and removed "SyncLead layer" from role description copy.
+- 2026-08-29 | build | BaseLayout Props interface updates are not enough — new props MUST also be added to the `Astro.props` destructuring or you get runtime "X is not defined" during static route generation (fails only when a page actually uses the prop). Added `service()` helper to schema.js + `schema="service"` / `serviceName` / `serviceOffers` props for solution pages per specs/seo-schema.md.
+- 2026-08-29 | blog | Blog index uses static placeholder posts (slug `#` = no link) until `src/content/blog/` content collections are wired per specs/architecture.md — real posts should swap the `posts` array for `getCollection('blog')`.
+- 2026-08-29 | layout | Mixed children (cards + separator arrows) inside a `grid-cols-N` with `col-start-*` classes cascades each card onto its own row (staggered mess). For node-flow diagrams use flexbox instead: `flex-col md:flex-row md:items-center` with arrows interleaved via `.map()` index check — mobile stacks vertically with `rotate-90` arrows.

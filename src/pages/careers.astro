@@ -1,0 +1,163 @@
+---
+// src/pages/careers.astro
+// Careers page — Marketio.net. Mission: build autonomous growth infrastructure.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
+
+const roles = [
+  {
+    title: 'Senior AI Agent Engineer',
+    department: 'Engineering',
+    location: 'Remote (Worldwide)',
+    type: 'Full-time',
+    description: 'Design and deploy stateful agent pipelines (Prospect → Engage → Book → Close). You will optimize token contexts, program prompt heuristics, and engineer custom middleware for robust LLM agent orchestration.',
+  },
+  {
+    title: 'Lead Deliverability Engineer',
+    department: 'Infrastructure',
+    location: 'Remote (Worldwide)',
+    type: 'Full-time',
+    description: 'Manage our scaling domain pools, continuous warmup routines, IP rotation matrices, and custom redirection proxy systems. You ensure our client agencies maintain perfect inbox placement rates.',
+  },
+  {
+    title: 'Solutions & Integration Engineer',
+    department: 'Partner Success',
+    location: 'Remote (Worldwide)',
+    type: 'Full-time',
+    description: 'Build robust CRM endpoints and data pipes for mid-market and enterprise agencies. Ensure zero context loss when leads flow from outbound sequencers to agency schedulers.',
+  },
+];
+
+const values = [
+  {
+    title: 'Absolute Autonomy',
+    body: 'We define clear goals and key metrics. How you reach them, which tools you build, and where you work is completely up to your execution.',
+  },
+  {
+    title: 'Zero Bloat',
+    body: 'We deploy real systems that handle millions of requests hourly. No endless meetings — clean code and running infrastructure.',
+  },
+  {
+    title: 'Leverage & Scale',
+    body: 'Our agent stacks handle more prospecting in one day than entire agencies did in a year. Your work operates at massive high-ticket leverage.',
+  },
+];
+---
+
+<BaseLayout
+  title="Careers — Marketio"
+  description="Join Marketio to build autonomous AI growth infrastructure for agencies. View our open engineering, ops, and product roles."
+  path="/careers/"
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <!-- Hero -->
+    <section class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+      <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/60">
+        <span class="h-1.5 w-1.5 rounded-full bg-orange"></span>
+        We're Hiring
+      </p>
+      <h1 class="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+        Work at the frontier of <span class="text-orange">AI SDR systems</span>.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+        We replace legacy sales hiring with autonomous agent pipelines. We're looking for engineers, systems thinkers, and deliverability specialists ready to scale autonomous growth infrastructure.
+      </p>
+    </section>
+
+    <!-- Open Positions -->
+    <section aria-labelledby="roles-heading" class="mx-auto max-w-4xl px-6 pt-20 lg:px-8">
+      <h2 id="roles-heading" class="text-2xl font-bold tracking-tight text-white border-b border-white/10 pb-4">
+        Open Positions
+      </h2>
+
+      <div class="mt-8 space-y-6">
+        {roles.map((role) => (
+          <article class="group rounded-2xl border border-white/10 bg-black p-6 transition-colors duration-300 hover:border-orange/50 sm:p-8">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div class="flex-1">
+                <h3 class="text-xl font-bold group-hover:text-orange transition-colors duration-200">
+                  {role.title}
+                </h3>
+                <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-white/50">
+                  <span>{role.department}</span>
+                  <span class="text-white/20">•</span>
+                  <span>{role.location}</span>
+                  <span class="text-white/20">•</span>
+                  <span class="text-orange">{role.type}</span>
+                </div>
+                <p class="mt-4 text-sm leading-relaxed text-white/60">
+                  {role.description}
+                </p>
+              </div>
+              <div class="shrink-0">
+                <a
+                  href={`mailto:careers@marketio.net?subject=Application for ${encodeURIComponent(role.title)}`}
+                  class="inline-block rounded-xl border border-white/15 px-6 py-2.5 text-sm font-semibold text-white/80 hover:border-orange hover:bg-orange hover:text-white transition-all duration-200"
+                >
+                  Apply Now
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- General applications -->
+      <div class="mt-10 rounded-2xl border border-dashed border-white/10 p-6 text-center sm:p-8">
+        <p class="text-sm text-white/50">
+          Don't see a perfect fit? We're always interested in exceptional talent.
+        </p>
+        <a
+          href="mailto:careers@marketio.net?subject=General Application"
+          class="mt-4 inline-block text-sm font-semibold text-orange hover:underline"
+        >
+          Send a general application →
+        </a>
+      </div>
+    </section>
+
+    <!-- Values / Culture -->
+    <section aria-labelledby="values-heading" class="mx-auto max-w-7xl px-6 pt-24 lg:px-8">
+      <div class="rounded-3xl border border-white/10 bg-black/40 px-6 py-16 sm:px-12 sm:py-20">
+        <h2 id="values-heading" class="text-center text-3xl font-extrabold tracking-tight sm:text-4xl text-white">
+          Why build with Marketio?
+        </h2>
+        <div class="mx-auto mt-12 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {values.map((v) => (
+            <div class="rounded-xl border border-white/5 bg-charcoal/50 p-6 space-y-3">
+              <h3 class="font-bold text-orange">{v.title}</h3>
+              <p class="text-sm leading-relaxed text-white/60">
+                {v.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mx-auto max-w-7xl px-6 pt-24 text-center lg:px-8">
+      <h2 class="mx-auto max-w-2xl text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+        Ready to build infrastructure that replaces entire sales teams?
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-white/60">
+        If the roles above don't match but you know you belong here, reach out. We move fast and hire on signal, not résumés.
+      </p>
+      <a
+        href={ctaHref}
+        target="_blank"
+        rel="noopener"
+        class="mt-10 inline-block rounded-xl bg-orange px-8 py-4 text-lg font-semibold shadow-xl shadow-orange/25 transition-transform duration-200 hover:scale-[1.04]"
+      >
+        Book a Discovery Call →
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

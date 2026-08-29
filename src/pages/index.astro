@@ -1,0 +1,186 @@
+---
+// Homepage — Marketio.net. Composes sections; no business logic here
+// (specs/architecture.md: pages compose components).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import HeroCanvas from '../components/HeroCanvas.astro';
+import Footer from '../components/Footer.astro';
+
+const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
+
+// PLACEHOLDER(proof): swap these four values for verified client metrics
+// before launch — specs/seo-schema.md forbids unverifiable claims.
+const stats = [
+  { value: '4M+', label: 'emails placed monthly' },
+  { value: '99%', label: 'avg. inbox placement' },
+  { value: '40+', label: 'agency partners' },
+  { value: '<30d', label: 'to full infrastructure' },
+];
+
+const tiers = [
+  {
+    name: 'AI SDR / BDR Agents',
+    blurb:
+      'Autonomous agents prospect across LinkedIn, email and social, personalise at scale and book meetings — no SDR headcount required.',
+  },
+  {
+    name: 'Deliverability-as-a-Service',
+    blurb:
+      'Dedicated IP pools, domain architecture, continuous warmup and rotation — inbox placement as a managed SLA.',
+  },
+  {
+    name: 'Unified Pipeline Sync',
+    blurb:
+      'All conversations, replies and bookings feed directly into your CRM — full context preserved, nothing falls through the cracks.',
+  },
+  {
+    name: 'White-Label Backend',
+    blurb:
+      'Your brand on our infrastructure. SLA-backed deliverability and AI ops under your agency name.',
+  },
+];
+
+const steps = [
+  {
+    n: '01',
+    title: 'Pipeline audit',
+    body: 'We map your current outreach stack, sequences and ICP — and show exactly where agents can replace manual SDR effort.',
+  },
+  {
+    n: '02',
+    title: 'Deploy & authenticate',
+    body: 'AI agents go live across channels. Deliverability infrastructure (SPF, DKIM, DMARC, dedicated IPs) runs underneath — invisible and reliable.',
+  },
+  {
+    n: '03',
+    title: 'Watch meetings book',
+    body: 'Volume ramps against live reply and booking data. Your team closes; the pipeline feeds itself.',
+  },
+];
+---
+
+<BaseLayout
+  title="Marketio — Your Pipeline Runs Itself"
+  description="Marketio deploys AI agents that prospect, engage and book meetings across LinkedIn, email and social — on autopilot. Built for established marketing agencies."
+  path="/"
+  schema="home"
+>
+  <Navbar />
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="relative overflow-hidden pt-16">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-16 lg:grid-cols-[1.05fr_1fr] lg:px-8 lg:pt-24">
+        <div>
+          <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/60">
+            <span class="h-1.5 w-1.5 rounded-full bg-orange"></span>
+            For established marketing agencies
+          </p>
+
+          <h1 class="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            Your pipeline runs itself.
+          </h1>
+
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+            Stop hiring SDRs. Marketio deploys AI agents that prospect across
+            LinkedIn, email and social — and book meetings while your team
+            focuses on closing.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a
+              href={ctaHref}
+              target="_blank"
+              rel="noopener"
+              class="rounded-xl bg-orange px-6 py-3.5 font-semibold shadow-lg shadow-orange/25 transition-transform duration-200 hover:scale-[1.03]"
+            >
+              Book a Discovery Call →
+            </a>
+            <a
+              href="/ai-automation/"
+              class="rounded-xl border border-white/15 px-6 py-3.5 font-semibold text-white/80 transition-colors duration-200 hover:border-orange hover:text-orange"
+            >
+              See the AI in Action
+            </a>
+          </div>
+        </div>
+
+        <HeroCanvas />
+      </div>
+
+      <!-- Proof strip -->
+      <div class="border-y border-white/5 bg-black/40">
+        <dl class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-10 sm:grid-cols-4 lg:px-8">
+          {stats.map((s) => (
+            <div>
+              <dt class="order-last mt-1 text-sm text-white/50">{s.label}</dt>
+              <dd class="text-3xl font-extrabold text-orange">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================= TIERS ================= -->
+    <section aria-labelledby="tiers-heading" class="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <h2 id="tiers-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+        Everything your pipeline needs to run itself
+      </h2>
+      <p class="mt-4 max-w-2xl text-white/60">
+        From AI prospecting to inbox delivery to CRM sync — one partner, no assembly required.
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {tiers.map((tier) => (
+          <article class="group rounded-2xl border border-white/10 bg-black p-6 transition-colors duration-300 hover:border-orange/50">
+            <h3 class="font-semibold leading-snug group-hover:text-orange">
+              {tier.name}
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-white/60">{tier.blurb}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- ================= PROCESS ================= -->
+    <section aria-labelledby="process-heading" class="border-y border-white/5 bg-black/30">
+      <div class="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <h2 id="process-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+          From zero to autonomous pipeline in three moves
+        </h2>
+        <ol class="mt-12 grid gap-10 md:grid-cols-3">
+          {steps.map((s) => (
+            <li class="relative pl-14">
+              <span class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-xl bg-orange font-bold" aria-hidden="true">
+                {s.n}
+              </span>
+              <h3 class="font-semibold">{s.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/60">{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="mx-auto max-w-7xl px-6 py-28 text-center lg:px-8">
+      <h2 class="mx-auto max-w-3xl text-balance text-3xl font-extrabold tracking-tight sm:text-5xl">
+        Stop building a sales team. Deploy one.
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-white/60">
+        One call. We show you exactly which parts of your outreach an AI agent
+        replaces on day one — and what that's worth at your current volume.
+      </p>
+      <a
+        href={ctaHref}
+        target="_blank"
+        rel="noopener"
+        class="mt-10 inline-block rounded-xl bg-orange px-8 py-4 text-lg font-semibold shadow-xl shadow-orange/25 transition-transform duration-200 hover:scale-[1.04]"
+      >
+        Book a Discovery Call →
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

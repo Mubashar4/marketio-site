@@ -1,0 +1,180 @@
+---
+// src/pages/pipeline-sync.astro
+// Pipeline Sync solution page — unified CRM integration layer.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
+
+const features = [
+  {
+    title: 'Zero-Context-Loss Handoffs',
+    body: 'Every outbound interaction — opens, replies, objections, bookings — flows into your CRM with full conversation history. Nothing falls through the cracks.',
+  },
+  {
+    title: 'CRM-Agnostic Integration',
+    body: 'HubSpot, Salesforce, Pipedrive, Close, or custom stacks — we build the pipes to fit your existing workflow, not the other way around.',
+  },
+  {
+    title: 'Real-Time Lead Routing',
+    body: 'Hot leads are routed to the right closer instantly. Assignments follow your rules — round-robin, territory, deal size, or custom logic.',
+  },
+  {
+    title: 'Sequencer Context Preservation',
+    body: 'When a prospect moves from outbound sequence to scheduled meeting, every touchpoint and conversation thread travels with them.',
+  },
+  {
+    title: 'Activity Sync & Attribution',
+    body: 'All agent activities — emails sent, LinkedIn messages, replies received — log automatically in your CRM for accurate pipeline attribution.',
+  },
+  {
+    title: 'Custom Webhook Endpoints',
+    body: 'Trigger downstream automations on any pipeline event. Connect to Slack, Zapier, n8n, or your own internal tooling with structured payloads.',
+  },
+];
+
+const flow = [
+  { step: '1', title: 'Outbound Agents', desc: 'AI agents send across LinkedIn, email, social' },
+  { step: '2', title: 'Pipeline Sync Layer', desc: 'Captures replies, classifies intent, preserves full thread' },
+  { step: '3', title: 'Your CRM', desc: 'Lead + full context arrives in your pipeline' },
+  { step: '4', title: 'Your Closers', desc: 'Enter every call fully briefed, zero prep needed' },
+];
+
+const metrics = [
+  { value: '100%', label: 'conversation context preserved' },
+  { value: '0', label: 'manual data entry required' },
+  { value: '<5s', label: 'lead routing latency' },
+  { value: '∞', label: 'CRM integrations supported' },
+];
+---
+
+<BaseLayout
+  title="Pipeline Sync — Marketio"
+  description="Unified pipeline sync layer for agencies: zero-context-loss CRM integration, real-time lead routing, and full activity attribution across all outbound channels."
+  path="/pipeline-sync/"
+  schema="service"
+  serviceName="Unified Pipeline Sync"
+  serviceOffers={[
+    {
+      '@type': 'Offer',
+      name: 'Unified Pipeline Sync',
+      description:
+        'All conversations, replies and bookings feed directly into your CRM — full context preserved, nothing falls through the cracks.',
+    },
+  ]}
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <!-- Hero -->
+    <section class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/60">
+          <span class="h-1.5 w-1.5 rounded-full bg-orange"></span>
+          Pipeline Sync
+        </p>
+        <h1 class="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          Every lead, every reply — <span class="text-orange">always in sync</span>.
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+          All conversations, replies, and bookings feed directly into your CRM with full context preserved. Your closers enter every call fully briefed.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener"
+            class="rounded-xl bg-orange px-6 py-3.5 font-semibold shadow-lg shadow-orange/25 transition-transform duration-200 hover:scale-[1.03]"
+          >
+            Map Your Pipeline →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics -->
+    <section class="mt-20 border-y border-white/5 bg-black/40">
+      <dl class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-10 sm:grid-cols-4 lg:px-8">
+        {metrics.map((m) => (
+          <div class="text-center">
+            <dd class="text-3xl font-extrabold text-orange">{m.value}</dd>
+            <dt class="mt-1 text-sm text-white/50">{m.label}</dt>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <!-- Data Flow Diagram (text-based) -->
+    <section aria-labelledby="flow-heading" class="mx-auto max-w-7xl px-6 pt-24 lg:px-8">
+      <h2 id="flow-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+        How data flows through your pipeline
+      </h2>
+      <p class="mt-4 max-w-2xl text-white/60">
+        Zero data loss. Full context. Every handoff is seamless.
+      </p>
+
+      <div class="mt-12 flex flex-col gap-4 md:flex-row md:items-center">
+        {flow.map((node, i) => (
+          <>
+            {i > 0 && (
+              <div class="flex shrink-0 items-center justify-center text-orange" aria-hidden="true">
+                <span class="rotate-90 text-2xl font-bold md:rotate-0">→</span>
+              </div>
+            )}
+            <div class="flex-1 rounded-2xl border border-white/10 bg-black p-6 text-center">
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-orange/10 text-orange font-bold text-lg">
+                {node.step}
+              </div>
+              <h3 class="mt-4 font-semibold">{node.title}</h3>
+              <p class="mt-2 text-xs text-white/50">{node.desc}</p>
+            </div>
+          </>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section aria-labelledby="features-heading" class="border-y border-white/5 bg-black/30 mt-24">
+      <div class="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <h2 id="features-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+          Built for zero data loss
+        </h2>
+        <p class="mt-4 max-w-2xl text-white/60">
+          The sync layer sits between your outbound agents and your CRM — capturing, enriching, and routing every interaction.
+        </p>
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f) => (
+            <article class="group rounded-2xl border border-white/10 bg-black p-6 transition-colors duration-300 hover:border-orange/50">
+              <h3 class="font-semibold leading-snug group-hover:text-orange transition-colors duration-200">
+                {f.title}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-white/60">{f.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mx-auto max-w-7xl px-6 py-28 text-center lg:px-8">
+      <h2 class="mx-auto max-w-3xl text-balance text-3xl font-extrabold tracking-tight sm:text-5xl">
+        Stop losing context between outreach and close.
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-white/60">
+        One call to map your current pipeline and see exactly where leads are falling through — and how to fix it.
+      </p>
+      <a
+        href={ctaHref}
+        target="_blank"
+        rel="noopener"
+        class="mt-10 inline-block rounded-xl bg-orange px-8 py-4 text-lg font-semibold shadow-xl shadow-orange/25 transition-transform duration-200 hover:scale-[1.04]"
+      >
+        Book a Pipeline Audit →
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

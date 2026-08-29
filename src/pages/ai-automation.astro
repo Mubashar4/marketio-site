@@ -1,0 +1,203 @@
+---
+// src/pages/ai-automation.astro
+// AI Growth Engine solution page — autonomous AI SDR/BDR agents.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
+
+const capabilities = [
+  {
+    title: 'Multi-Channel Prospecting',
+    body: 'AI agents work across LinkedIn, email, and social simultaneously — reaching your ICP wherever they are, without manual coordination.',
+  },
+  {
+    title: 'Hyper-Personalisation at Scale',
+    body: 'Every message is crafted from real prospect data — company signals, role context, and recent activity. No templates. No mail-merge cringe.',
+  },
+  {
+    title: 'Autonomous Follow-Up Sequences',
+    body: 'Agents manage multi-touch cadences, adjust timing based on engagement signals, and know when to push and when to back off.',
+  },
+  {
+    title: 'Meeting Booking on Autopilot',
+    body: 'When a prospect is ready, the agent handles scheduling directly — no human in the loop until the meeting itself.',
+  },
+  {
+    title: 'Real-Time Reply Classification',
+    body: 'Positive, objection, out-of-office, referral — every reply is classified and routed. Hot leads surface instantly.',
+  },
+  {
+    title: 'Continuous Learning',
+    body: 'Agents optimise messaging, timing, and channel mix based on live conversion data. Performance compounds week over week.',
+  },
+];
+
+const pipeline = [
+  { stage: 'Prospect', desc: 'Agents identify and enrich high-intent contacts matching your ICP across LinkedIn, databases, and intent signals.' },
+  { stage: 'Engage', desc: 'Personalised multi-channel outreach launches automatically. Every touchpoint is contextual and sequenced.' },
+  { stage: 'Book', desc: 'When prospects respond positively, the agent handles calendar coordination and confirms the meeting.' },
+  { stage: 'Close', desc: 'Full conversation context flows into your CRM. Your closers enter every call fully briefed.' },
+];
+---
+
+<BaseLayout
+  title="AI Growth Engine — Marketio"
+  description="Autonomous AI SDR and BDR agents that prospect across LinkedIn, email and social, personalise at scale, and book meetings — no headcount required."
+  path="/ai-automation/"
+  schema="service"
+  serviceName="AI Growth Engine"
+  serviceOffers={[
+    {
+      '@type': 'Offer',
+      name: 'AI SDR / BDR Agents',
+      description:
+        'Autonomous agents prospect across LinkedIn, email and social, personalise at scale and book meetings — no SDR headcount required.',
+    },
+  ]}
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <!-- Hero -->
+    <section class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/60">
+          <span class="h-1.5 w-1.5 rounded-full bg-orange"></span>
+          AI Growth Engine
+        </p>
+        <h1 class="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          AI agents that <span class="text-orange">book meetings</span> while you sleep.
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+          Autonomous SDR and BDR agents prospect across LinkedIn, email, and social — personalise every touchpoint — and book qualified meetings without a single human in the loop.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener"
+            class="rounded-xl bg-orange px-6 py-3.5 font-semibold shadow-lg shadow-orange/25 transition-transform duration-200 hover:scale-[1.03]"
+          >
+            See the AI in Action →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline Stages -->
+    <section aria-labelledby="pipeline-heading" class="mx-auto max-w-7xl px-6 pt-24 lg:px-8">
+      <h2 id="pipeline-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+        The autonomous agent pipeline
+      </h2>
+      <p class="mt-4 max-w-2xl text-white/60">
+        Four stages. Zero manual effort. Every step runs on autopilot.
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {pipeline.map((p, i) => (
+          <article class="group rounded-2xl border border-white/10 bg-black p-6 transition-colors duration-300 hover:border-orange/50">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange text-sm font-bold" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="text-lg font-bold group-hover:text-orange transition-colors duration-200">
+                {p.stage}
+              </h3>
+            </div>
+            <p class="text-sm leading-relaxed text-white/60">{p.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Capabilities Grid -->
+    <section aria-labelledby="capabilities-heading" class="border-y border-white/5 bg-black/30 mt-24">
+      <div class="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <h2 id="capabilities-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+          What the agents actually do
+        </h2>
+        <p class="mt-4 max-w-2xl text-white/60">
+          Not a chatbot. Not a template engine. Fully autonomous agents that handle the entire top-of-funnel.
+        </p>
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((c) => (
+            <article class="group rounded-2xl border border-white/10 bg-black p-6 transition-colors duration-300 hover:border-orange/50">
+              <h3 class="font-semibold leading-snug group-hover:text-orange transition-colors duration-200">
+                {c.title}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-white/60">{c.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison -->
+    <section aria-labelledby="compare-heading" class="mx-auto max-w-7xl px-6 pt-24 lg:px-8">
+      <h2 id="compare-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+        SDR team vs. AI agents
+      </h2>
+      <div class="mt-12 overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-white/10">
+              <th class="pb-4 pr-8 font-semibold text-white/40 uppercase tracking-wider text-xs"></th>
+              <th class="pb-4 pr-8 font-semibold text-white/40 uppercase tracking-wider text-xs">Traditional SDR Team</th>
+              <th class="pb-4 font-semibold text-orange uppercase tracking-wider text-xs">Marketio AI Agents</th>
+            </tr>
+          </thead>
+          <tbody class="text-white/70">
+            <tr class="border-b border-white/5">
+              <td class="py-4 pr-8 font-medium text-white">Ramp time</td>
+              <td class="py-4 pr-8">3–6 months</td>
+              <td class="py-4 text-orange font-medium">48 hours</td>
+            </tr>
+            <tr class="border-b border-white/5">
+              <td class="py-4 pr-8 font-medium text-white">Cost per meeting</td>
+              <td class="py-4 pr-8">$200–$500+</td>
+              <td class="py-4 text-orange font-medium">Fraction of that</td>
+            </tr>
+            <tr class="border-b border-white/5">
+              <td class="py-4 pr-8 font-medium text-white">Channels</td>
+              <td class="py-4 pr-8">Usually 1–2</td>
+              <td class="py-4 text-orange font-medium">LinkedIn + email + social simultaneously</td>
+            </tr>
+            <tr class="border-b border-white/5">
+              <td class="py-4 pr-8 font-medium text-white">Personalisation</td>
+              <td class="py-4 pr-8">Template-based</td>
+              <td class="py-4 text-orange font-medium">1:1 contextual per prospect</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-8 font-medium text-white">Scale ceiling</td>
+              <td class="py-4 pr-8">Headcount-limited</td>
+              <td class="py-4 text-orange font-medium">Infrastructure-limited (virtually none)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mx-auto max-w-7xl px-6 py-28 text-center lg:px-8">
+      <h2 class="mx-auto max-w-3xl text-balance text-3xl font-extrabold tracking-tight sm:text-5xl">
+        Replace your SDR headcount with agents that never stop.
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-white/60">
+        One call. We show you exactly which parts of your outreach an AI agent replaces on day one — and what that's worth at your current volume.
+      </p>
+      <a
+        href={ctaHref}
+        target="_blank"
+        rel="noopener"
+        class="mt-10 inline-block rounded-xl bg-orange px-8 py-4 text-lg font-semibold shadow-xl shadow-orange/25 transition-transform duration-200 hover:scale-[1.04]"
+      >
+        Book a Discovery Call →
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

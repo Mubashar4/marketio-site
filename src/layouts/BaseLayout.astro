@@ -1,0 +1,84 @@
+---
+// BaseLayout — SEO shell + JSON-LD injection point (specs/seo-schema.md).
+// Every page renders through this layout; metadata is mandatory, never optional.
+import '../styles/global.css';
+import { professionalService, organization, service } from '../lib/schema.js';
+
+interface Props {
+  title: string; // ≤ 60 chars, unique per page
+  description: string; // ≤ 155 chars, outcome-oriented
+  path: string; // route path, e.g. '/' or '/deliverability/'
+  ogType?: string;
+  ogImage?: string;
+  robots?: string; // defaults to index,follow
+  schema?: 'home' | 'service' | 'none'; // solution pages emit Service
+  serviceName?: string; // required when schema === 'service'
+  serviceOffers?: { '@type': string; name: string; description: string }[];
+}
+
+const {
+  title,
+  description,
+  path,
+  ogType = 'website',
+  ogImage = '/brand/og-default.png', // PLACEHOLDER(asset): 1200×630 OG image
+  robots = 'index,follow',
+  schema = 'none',
+  serviceName,
+  serviceOffers,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://marketio.net');
+const canonical = new URL(path, site).href;
+const absOgImage = new URL(ogImage, site).href;
+
+// Home carries the full identity block; solution pages emit their Service.
+const jsonLd =
+  schema === 'home'
+    ? [professionalService(site.href), organization(site.href)]
+    : schema === 'service' && serviceName
+      ? [service({ site: site.href, name: serviceName, description, offers: serviceOffers ?? [] })]
+      : [];
+---
+
+<!doctype html>
+<html lang="en" class="bg-charcoal text-white antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={robots} />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Marketio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absOgImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absOgImage} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {jsonLd.map((obj) => (
+      <script type="application/ld+json" set:html={JSON.stringify(obj)} />
+    ))}
+  </head>
+  <body class="min-h-dvh bg-charcoal font-sans text-white">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-black focus:px-4 focus:py-2 focus:text-white"
+    >
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,161 @@
+---
+// src/pages/legal/cookie.astro
+// Cookie Policy describing our use of cookies and tracking technologies.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const sections = [
+  { id: 'introduction', title: '1. What Are Cookies' },
+  { id: 'how-we-use-cookies', title: '2. How We Use Cookies' },
+  { id: 'types-of-cookies-we-use', title: '3. Types of Cookies We Use' },
+  { id: 'managing-cookies', title: '4. Managing Cookie Preferences' },
+  { id: 'policy-updates', title: '5. Changes to This Policy' },
+  { id: 'contact-us', title: '6. Contact Us' },
+];
+---
+
+<BaseLayout
+  title="Cookie Policy — Marketio"
+  description="Marketio Cookie Policy. Learn about our use of cookies and tracking technologies, and how to manage your preferences."
+  path="/legal/cookie/"
+  robots="noindex,follow"
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl">
+        <!-- Header -->
+        <div class="border-b border-white/10 pb-8">
+          <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Cookie Policy</h1>
+          <p class="mt-4 text-sm text-white/50 flex flex-wrap gap-x-6 gap-y-2">
+            <span><strong>Effective Date:</strong> March 11, 2026</span>
+            <span><strong>Last Updated:</strong> March 11, 2026</span>
+            <span><strong>Contact:</strong> <a href="mailto:privacy@marketio.net" class="text-orange hover:underline">privacy@marketio.net</a></span>
+          </p>
+        </div>
+
+        <!-- Layout with Table of Contents and Content Grid -->
+        <div class="mt-12 lg:grid lg:grid-cols-[250px_1fr] lg:gap-12">
+          <!-- Sidebar Contents -->
+          <aside class="hidden lg:block">
+            <div class="sticky top-24">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/40">Contents</h2>
+              <nav class="mt-4" aria-label="Table of contents">
+                <ul class="space-y-3">
+                  {sections.map((s) => (
+                    <li>
+                      <a
+                        href={`#${s.id}`}
+                        class="text-sm text-white/60 transition-colors duration-200 hover:text-orange focus:text-orange block"
+                      >
+                        {s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Document Flow -->
+          <div class="text-white/80 space-y-12 max-w-2xl lg:max-w-none">
+            <!-- Mobile contents list -->
+            <nav class="block lg:hidden border border-white/10 bg-black/40 rounded-xl p-6 mb-8" aria-label="Table of contents menu">
+              <h2 class="text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">Contents</h2>
+              <ul class="grid gap-2 sm:grid-cols-2">
+                {sections.map((s) => (
+                  <li>
+                    <a href={`#${s.id}`} class="text-sm text-orange hover:underline block">
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <!-- 1. What Are Cookies -->
+            <section id="introduction" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">1. What Are Cookies</h2>
+              <p class="leading-relaxed">
+                Cookies are small text files stored on your device (computer, tablet, or mobile) when you visit a website. They are widely used to make websites work more efficiently, improve the user experience, and provide information to the owners of the site.
+              </p>
+            </section>
+
+            <!-- 2. How We Use Cookies -->
+            <section id="how-we-use-cookies" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">2. How We Use Cookies</h2>
+              <p class="leading-relaxed">
+                Marketio LLC uses cookies to: authenticate subscribers and keep them logged in; remember preferences (such as dashboard layouts and configuration selections); monitor platform health and performance; and assist with our marketing efforts (such as analyzing outreach response and tracking page performance).
+              </p>
+            </section>
+
+            <!-- 3. Types of Cookies We Use -->
+            <section id="types-of-cookies-we-use" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">3. Types of Cookies We Use</h2>
+              <p class="leading-relaxed">
+                We categorize our cookies into three main groups:
+              </p>
+              
+              <div class="mt-4 space-y-6">
+                <div>
+                  <h3 class="text-base font-semibold text-white">3.1 Essential Cookies</h3>
+                  <p class="mt-1 leading-relaxed">
+                    These cookies are necessary for the platform to function properly. Without them, you would not be able to log into secure areas of the Services, complete subscription payments, or maintain your session.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 class="text-base font-semibold text-white">3.2 Performance and Analytics Cookies</h3>
+                  <p class="mt-1 leading-relaxed">
+                    These cookies collect aggregated information about how visitors interact with our Services. For example, we use Google Analytics to identify which pages are visited most frequently and detect any errors. These do not directly identify individual visitors.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 class="text-base font-semibold text-white">3.3 Functional and Marketing Cookies</h3>
+                  <p class="mt-1 leading-relaxed">
+                    These cookies allow the site to remember choices you make (such as language or region preferences) and provide enhanced features. They are also used to deliver advertisements and outreach metrics relevant to your interests.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- 4. Managing Cookie Preferences -->
+            <section id="managing-cookies" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">4. Managing Cookie Preferences</h2>
+              <p class="leading-relaxed">
+                You have the right to decide whether to accept or reject cookies. Most web browsers allow you to control cookies through their settings. You can set your browser to refuse all cookies or indicate when a cookie is being sent. 
+              </p>
+              <p class="leading-relaxed">
+                Please note that if you disable essential cookies, some parts of the Marketio Services or the dashboard may not function correctly.
+              </p>
+            </section>
+
+            <!-- 5. Changes to This Policy -->
+            <section id="policy-updates" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">5. Changes to This Policy</h2>
+              <p class="leading-relaxed">
+                We may update this Cookie Policy from time to time in order to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please re-visit this Cookie Policy regularly to stay informed about our use of cookies.
+              </p>
+            </section>
+
+            <!-- 6. Contact Us -->
+            <section id="contact-us" class="scroll-mt-24 space-y-4 border-t border-white/10 pt-8">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">6. Contact Us</h2>
+              <p class="leading-relaxed">
+                If you have any questions about our use of cookies or other technologies, please email us:<br />
+                Marketio LLC (Delaware)<br />
+                Email: <a href="mailto:privacy@marketio.net" class="text-orange hover:underline">privacy@marketio.net</a><br />
+                Website: <a href="https://marketio.net" class="text-orange hover:underline">marketio.net</a>
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

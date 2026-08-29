@@ -1,0 +1,82 @@
+---
+// Footer — minimal chrome. Links to routes that exist in specs/architecture.md.
+// NOTE(bookkeeping): legal pages (terms/privacy) land with their build task.
+const year = new Date().getFullYear();
+const cols = [
+  {
+    heading: 'Solutions',
+    links: [
+      { href: '/deliverability/', label: 'Deliverability-as-a-Service' },
+      { href: '/ai-automation/', label: 'AI Growth Engine' },
+      { href: '/pipeline-sync/', label: 'Pipeline Sync' },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { href: '/blog/', label: 'The Blueprint' },
+      { href: '/careers/', label: 'Careers' },
+      { href: '/contact/', label: 'Contact' },
+      { href: '/', label: 'Home' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { href: '/legal/privacy/', label: 'Privacy Policy' },
+      { href: '/legal/terms/', label: 'Terms of Service' },
+      { href: '/legal/cookie/', label: 'Cookie Policy' },
+      { href: '/legal/acceptable-use/', label: 'Acceptable Use' },
+      { href: '/legal/security/', label: 'Security' },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-white/5 bg-charcoal">
+  <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-8">
+    <div>
+      <a href="/" class="flex items-center gap-2" aria-label="Marketio home">
+        <span class="inline-block h-2.5 w-2.5 rounded-full bg-orange" aria-hidden="true"></span>
+        <span class="text-lg font-bold tracking-tight">Marketio</span>
+      </a>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+        Deliverability and AI infrastructure for established marketing agencies.
+      </p>
+    </div>
+
+    {cols.map((col) => (
+      <nav aria-label={col.heading}>
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-white/40">{col.heading}</h2>
+        <ul class="mt-4 space-y-3">
+          {col.links.map((l) => (
+            <li>
+              <a href={l.href} class="text-sm text-white/70 transition-colors duration-200 hover:text-white">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    ))}
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-white/40">Start</h2>
+      <a
+        href="https://calendly.com/mubashar_ali/mubashar"
+        target="_blank"
+        rel="noopener"
+        class="mt-4 inline-block rounded-lg border border-orange px-4 py-2 text-sm font-semibold text-orange transition-colors duration-200 hover:bg-orange hover:text-white"
+      >
+        Book a Discovery Call
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/5">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 text-sm text-white/40 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+      <p>© {year} Marketio LLC. All rights reserved.</p>
+      <p>Delaware, USA</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,168 @@
+---
+// src/pages/deliverability.astro
+// Deliverability-as-a-Service solution page.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
+
+const features = [
+  {
+    title: 'Dedicated IP Pools',
+    body: 'Clean, warmed IP addresses allocated exclusively to your agency. No shared reputation risk — ever.',
+  },
+  {
+    title: 'Domain Architecture',
+    body: 'SPF, DKIM, DMARC, and custom tracking domains configured and monitored. We handle the DNS so you never think about it.',
+  },
+  {
+    title: 'Continuous Warmup & Rotation',
+    body: 'Automated warmup sequences across your entire mailbox fleet. Rotation logic distributes volume to protect sender scores.',
+  },
+  {
+    title: 'Inbox Placement Monitoring',
+    body: 'Real-time dashboards tracking placement rates across Gmail, Outlook, and Yahoo. Alerts before problems become fires.',
+  },
+  {
+    title: 'Spam Trap Detection',
+    body: 'Proactive list hygiene and trap identification. We catch bad addresses before they damage your reputation.',
+  },
+  {
+    title: 'Managed SLA',
+    body: 'Contractual inbox placement guarantees backed by dedicated infrastructure engineers. Not a tool — a team.',
+  },
+];
+
+const stats = [
+  { value: '99%', label: 'avg. inbox placement' },
+  { value: '4M+', label: 'emails placed monthly' },
+  { value: '<24h', label: 'incident response time' },
+  { value: '0', label: 'shared IP pools' },
+];
+---
+
+<BaseLayout
+  title="Deliverability-as-a-Service — Marketio"
+  description="Managed email deliverability infrastructure for agencies: dedicated IPs, domain architecture, continuous warmup, and SLA-backed inbox placement."
+  path="/deliverability/"
+  schema="service"
+  serviceName="Deliverability-as-a-Service"
+  serviceOffers={[
+    {
+      '@type': 'Offer',
+      name: 'Managed Deliverability Infrastructure',
+      description:
+        'Dedicated IP pools, domain architecture (SPF/DKIM/DMARC), continuous warmup, rotation, and SLA-backed inbox placement monitoring.',
+    },
+  ]}
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <!-- Hero -->
+    <section class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/60">
+          <span class="h-1.5 w-1.5 rounded-full bg-orange"></span>
+          Deliverability-as-a-Service
+        </p>
+        <h1 class="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          Every email lands where it <span class="text-orange">should</span>.
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+          Dedicated IP pools, domain architecture, continuous warmup, and inbox-placement monitoring — managed as a service so your agency never loses a lead to spam.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener"
+            class="rounded-xl bg-orange px-6 py-3.5 font-semibold shadow-lg shadow-orange/25 transition-transform duration-200 hover:scale-[1.03]"
+          >
+            Get a Deliverability Audit →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="mt-20 border-y border-white/5 bg-black/40">
+      <dl class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-10 sm:grid-cols-4 lg:px-8">
+        {stats.map((s) => (
+          <div class="text-center">
+            <dd class="text-3xl font-extrabold text-orange">{s.value}</dd>
+            <dt class="mt-1 text-sm text-white/50">{s.label}</dt>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <!-- Features Grid -->
+    <section aria-labelledby="features-heading" class="mx-auto max-w-7xl px-6 pt-24 lg:px-8">
+      <h2 id="features-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+        Infrastructure that protects every send
+      </h2>
+      <p class="mt-4 max-w-2xl text-white/60">
+        We manage the full deliverability stack underneath your outbound operations. You focus on pipeline — we keep the lights on.
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {features.map((f) => (
+          <article class="group rounded-2xl border border-white/10 bg-black p-6 transition-colors duration-300 hover:border-orange/50">
+            <h3 class="font-semibold leading-snug group-hover:text-orange transition-colors duration-200">
+              {f.title}
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-white/60">{f.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section aria-labelledby="process-heading" class="border-y border-white/5 bg-black/30 mt-24">
+      <div class="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <h2 id="process-heading" class="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+          How we deploy your infrastructure
+        </h2>
+        <ol class="mt-12 grid gap-10 md:grid-cols-3">
+          <li class="relative pl-14">
+            <span class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-xl bg-orange font-bold" aria-hidden="true">01</span>
+            <h3 class="font-semibold">Audit & architect</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/60">We map your current sending infrastructure, identify reputation risks, and design a clean domain and IP architecture.</p>
+          </li>
+          <li class="relative pl-14">
+            <span class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-xl bg-orange font-bold" aria-hidden="true">02</span>
+            <h3 class="font-semibold">Provision & warm</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/60">Dedicated IPs, DNS records, and mailboxes go live. Automated warmup begins with controlled volume ramps across providers.</p>
+          </li>
+          <li class="relative pl-14">
+            <span class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-xl bg-orange font-bold" aria-hidden="true">03</span>
+            <h3 class="font-semibold">Monitor & protect</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/60">Continuous placement monitoring, spam trap detection, and proactive reputation management — all under SLA.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mx-auto max-w-7xl px-6 py-28 text-center lg:px-8">
+      <h2 class="mx-auto max-w-3xl text-balance text-3xl font-extrabold tracking-tight sm:text-5xl">
+        Stop losing leads to spam folders.
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-white/60">
+        One call to audit your current deliverability setup and see exactly where emails are landing — and what it's costing you.
+      </p>
+      <a
+        href={ctaHref}
+        target="_blank"
+        rel="noopener"
+        class="mt-10 inline-block rounded-xl bg-orange px-8 py-4 text-lg font-semibold shadow-xl shadow-orange/25 transition-transform duration-200 hover:scale-[1.04]"
+      >
+        Book a Deliverability Audit →
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

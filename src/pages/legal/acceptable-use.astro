@@ -1,0 +1,174 @@
+---
+// src/pages/legal/acceptable-use.astro
+// Acceptable Use Policy legal page.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const sections = [
+  { id: 'overview', title: '1. Overview' },
+  { id: 'prohibited-uses', title: '2. Prohibited Uses' },
+  { id: 'responsible-ai-use', title: '3. Responsible AI Use' },
+  { id: 'data-handling-responsibilities', title: '4. Data Handling Responsibilities' },
+  { id: 'enforcement', title: '5. Enforcement' },
+  { id: 'reporting-violations', title: '6. Reporting Violations' },
+];
+---
+
+<BaseLayout
+  title="Acceptable Use Policy — Marketio"
+  description="Marketio Acceptable Use Policy. Review the guidelines and prohibited activities on the Marketio outbound-pipeline and AI-agent infrastructure."
+  path="/legal/acceptable-use/"
+  robots="noindex,follow"
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl">
+        <!-- Header -->
+        <div class="border-b border-white/10 pb-8">
+          <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Acceptable Use Policy</h1>
+          <p class="mt-4 text-sm text-white/50 flex flex-wrap gap-x-6 gap-y-2">
+            <span><strong>Effective Date:</strong> March 11, 2026</span>
+            <span><strong>Last Updated:</strong> March 11, 2026</span>
+          </p>
+        </div>
+
+        <!-- Layout with Table of Contents and Content Grid -->
+        <div class="mt-12 lg:grid lg:grid-cols-[250px_1fr] lg:gap-12">
+          <!-- Sidebar Contents -->
+          <aside class="hidden lg:block">
+            <div class="sticky top-24">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/40">Contents</h2>
+              <nav class="mt-4" aria-label="Table of contents">
+                <ul class="space-y-3">
+                  {sections.map((s) => (
+                    <li>
+                      <a
+                        href={`#${s.id}`}
+                        class="text-sm text-white/60 transition-colors duration-200 hover:text-orange focus:text-orange block"
+                      >
+                        {s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Document Flow -->
+          <div class="text-white/80 space-y-12 max-w-2xl lg:max-w-none">
+            <!-- Mobile contents list -->
+            <nav class="block lg:hidden border border-white/10 bg-black/40 rounded-xl p-6 mb-8" aria-label="Table of contents menu">
+              <h2 class="text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">Contents</h2>
+              <ul class="grid gap-2 sm:grid-cols-2">
+                {sections.map((s) => (
+                  <li>
+                    <a href={`#${s.id}`} class="text-sm text-orange hover:underline block">
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <!-- 1. Overview -->
+            <section id="overview" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">1. Overview</h2>
+              <p class="leading-relaxed">
+                This Acceptable Use Policy (“AUP”) describes the rules and restrictions that apply to your use of the Marketio platform. By using the Services, you agree to comply with this AUP. We reserve the right to suspend or terminate access for any violation.
+              </p>
+            </section>
+
+            <!-- 2. Prohibited Uses -->
+            <section id="prohibited-uses" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">2. Prohibited Uses</h2>
+              
+              <div class="space-y-4">
+                <div>
+                  <h3 class="text-base font-semibold text-white">2.1 Spam and Unsolicited Communications</h3>
+                  <ul class="list-disc list-inside space-y-2 pl-4 mt-2">
+                    <li>Sending bulk unsolicited emails in violation of CAN-SPAM, CASL, GDPR, or any applicable anti-spam legislation.</li>
+                    <li>Disguising the origin of messages or impersonating another person or entity.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 class="text-base font-semibold text-white">2.2 Harassment and Harm</h3>
+                  <ul class="list-disc list-inside space-y-2 pl-4 mt-2">
+                    <li>Using the Services to harass, threaten, intimidate, or harm any individual.</li>
+                    <li>Targeting individuals based on protected characteristics.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 class="text-base font-semibold text-white">2.3 Illegal Activity</h3>
+                  <ul class="list-disc list-inside space-y-2 pl-4 mt-2">
+                    <li>Using the Services for any purpose that violates applicable law or regulation.</li>
+                    <li>Processing data without legal basis or in violation of GDPR, CCPA, or other data protection laws.</li>
+                    <li>Engaging in fraud, deception, or misrepresentation.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 class="text-base font-semibold text-white">2.4 Platform Abuse</h3>
+                  <ul class="list-disc list-inside space-y-2 pl-4 mt-2">
+                    <li>Attempting to probe, scan, or test the vulnerability of the Services.</li>
+                    <li>Attempting to gain unauthorised access to any part of the Services.</li>
+                    <li>Overloading, flooding, or otherwise disrupting the Services.</li>
+                    <li>Reverse engineering, decompiling, or disassembling any component of the Services.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- 3. Responsible AI Use -->
+            <section id="responsible-ai-use" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">3. Responsible AI Use</h2>
+              <p class="leading-relaxed">
+                When using Marketio’s AI agent features, you are responsible for the outputs and actions taken on your behalf. You agree to: review AI-generated content before sending; maintain proper oversight of agent activity via your dashboard; comply with applicable AI and data regulations; and not attempt to manipulate AI agents to produce harmful or deceptive content.
+              </p>
+            </section>
+
+            <!-- 4. Data Handling Responsibilities -->
+            <section id="data-handling-responsibilities" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">4. Data Handling Responsibilities</h2>
+              <p class="leading-relaxed">
+                As a Marketio customer, you are responsible for the quality, legality, and appropriateness of all data you upload and process, including:
+              </p>
+              <ul class="list-disc list-inside space-y-2 pl-4">
+                <li>Ensuring you have a lawful basis for contacting and processing data about prospects.</li>
+                <li>Honouring opt-out and unsubscribe requests promptly.</li>
+                <li>Maintaining accurate suppression lists.</li>
+                <li>Complying with all applicable data protection and privacy regulations.</li>
+              </ul>
+            </section>
+
+            <!-- 5. Enforcement -->
+            <section id="enforcement" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">5. Enforcement</h2>
+              <p class="leading-relaxed">
+                Violations of this AUP may result in a warning and required remediation, temporary account suspension, permanent account termination, or reporting to relevant authorities. We reserve the right to investigate any suspected violations at our sole discretion.
+              </p>
+            </section>
+
+            <!-- 6. Reporting Violations -->
+            <section id="reporting-violations" class="scroll-mt-24 space-y-4 border-t border-white/10 pt-8">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">6. Reporting Violations</h2>
+              <p class="leading-relaxed">
+                To report a violation: <a href="mailto:support@marketio.net?subject=AUP%20Violation%20Report" class="text-orange hover:underline">support@marketio.net</a> — Subject: “AUP Violation Report”
+              </p>
+              <p class="mt-4 leading-relaxed text-sm text-white/50">
+                Marketio LLC (Delaware)
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

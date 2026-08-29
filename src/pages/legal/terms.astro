@@ -1,0 +1,220 @@
+---
+// src/pages/legal/terms.astro
+// Terms of Service legal page.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const sections = [
+  { id: 'agreement-to-terms', title: '1. Agreement to Terms' },
+  { id: 'eligibility', title: '2. Eligibility' },
+  { id: 'account-registration', title: '3. Account Registration' },
+  { id: 'subscription-and-payment', title: '4. Subscription and Payment' },
+  { id: 'acceptable-use', title: '5. Acceptable Use' },
+  { id: 'customer-data-and-privacy', title: '6. Customer Data and Privacy' },
+  { id: 'intellectual-property', title: '7. Intellectual Property' },
+  { id: 'disclaimers', title: '8. Disclaimers' },
+  { id: 'limitation-of-liability', title: '9. Limitation of Liability' },
+  { id: 'indemnification', title: '10. Indemnification' },
+  { id: 'term-and-termination', title: '11. Term and Termination' },
+  { id: 'governing-law', title: '12. Governing Law' },
+  { id: 'contact', title: '13. Contact' },
+];
+---
+
+<BaseLayout
+  title="Terms of Service — Marketio"
+  description="Marketio Terms of Service. Review the legal terms and agreement governing the use of the Marketio platform and services."
+  path="/legal/terms/"
+  robots="noindex,follow"
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl">
+        <!-- Header -->
+        <div class="border-b border-white/10 pb-8">
+          <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Terms of Service</h1>
+          <p class="mt-4 text-sm text-white/50 flex flex-wrap gap-x-6 gap-y-2">
+            <span><strong>Effective Date:</strong> March 11, 2026</span>
+            <span><strong>Last Updated:</strong> March 11, 2026</span>
+            <span><strong>Questions:</strong> <a href="mailto:support@marketio.net" class="text-orange hover:underline">support@marketio.net</a></span>
+          </p>
+        </div>
+
+        <!-- Layout with Table of Contents and Content Grid -->
+        <div class="mt-12 lg:grid lg:grid-cols-[250px_1fr] lg:gap-12">
+          <!-- Sidebar Contents -->
+          <aside class="hidden lg:block">
+            <div class="sticky top-24">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/40">Contents</h2>
+              <nav class="mt-4" aria-label="Table of contents">
+                <ul class="space-y-3">
+                  {sections.map((s) => (
+                    <li>
+                      <a
+                        href={`#${s.id}`}
+                        class="text-sm text-white/60 transition-colors duration-200 hover:text-orange focus:text-orange block"
+                      >
+                        {s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Document Flow -->
+          <div class="text-white/80 space-y-12 max-w-2xl lg:max-w-none">
+            <!-- Mobile contents list -->
+            <nav class="block lg:hidden border border-white/10 bg-black/40 rounded-xl p-6 mb-8" aria-label="Table of contents menu">
+              <h2 class="text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">Contents</h2>
+              <ul class="grid gap-2 sm:grid-cols-2">
+                {sections.map((s) => (
+                  <li>
+                    <a href={`#${s.id}`} class="text-sm text-orange hover:underline block">
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <!-- 1. Agreement to Terms -->
+            <section id="agreement-to-terms" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">1. Agreement to Terms</h2>
+              <p class="leading-relaxed">
+                These Terms of Service (“Terms”) constitute a legally binding agreement between you (“User” or “Customer”) and Marketio LLC, a Delaware Limited Liability Company (“Company,” “we,” “us,” or “our”). By accessing or using our Services, you agree to be bound by these Terms.
+              </p>
+            </section>
+
+            <!-- 2. Eligibility -->
+            <section id="eligibility" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">2. Eligibility</h2>
+              <p class="leading-relaxed">
+                You must be at least 18 years of age and have legal authority to enter a binding agreement. If using the Services on behalf of a business, you represent you are authorised to bind that entity to these Terms.
+              </p>
+            </section>
+
+            <!-- 3. Account Registration -->
+            <section id="account-registration" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">3. Account Registration</h2>
+              <p class="leading-relaxed">
+                You agree to provide accurate information, keep credentials confidential, notify us immediately of unauthorized use at <a href="mailto:support@marketio.net" class="text-orange hover:underline">support@marketio.net</a>, and accept responsibility for all activity under your account.
+              </p>
+            </section>
+
+            <!-- 4. Subscription and Payment -->
+            <section id="subscription-and-payment" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">4. Subscription and Payment</h2>
+              <div class="space-y-4">
+                <div>
+                  <h3 class="text-base font-semibold text-white">4.1 Billing</h3>
+                  <p class="mt-1 leading-relaxed">
+                    Subscriptions are billed monthly. By subscribing, you authorise recurring charges until you cancel.
+                  </p>
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-white">4.2 Cancellation</h3>
+                  <p class="mt-1 leading-relaxed">
+                    You may cancel anytime from your account settings or by emailing <a href="mailto:support@marketio.net" class="text-orange hover:underline">support@marketio.net</a>. Cancellations take effect at the end of the current billing period. No refunds for partial periods.
+                  </p>
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-white">4.3 Price Changes</h3>
+                  <p class="mt-1 leading-relaxed">
+                    We reserve the right to modify fees with 30 days' prior written notice.
+                  </p>
+                </div>
+                <div>
+                  <h3 class="text-base font-semibold text-white">4.4 Taxes</h3>
+                  <p class="mt-1 leading-relaxed">
+                    Prices are exclusive of applicable taxes, which are your responsibility.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- 5. Acceptable Use -->
+            <section id="acceptable-use" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">5. Acceptable Use</h2>
+              <p class="leading-relaxed">
+                You agree to use the Services only for lawful purposes and in accordance with our <a href="/legal/acceptable-use/" class="text-orange hover:underline">Acceptable Use Policy</a>. You may not: violate any law; send unsolicited bulk communications in violation of CAN-SPAM, CASL, or GDPR; reverse engineer any part of the Services; or use the Services to harass or harm any individual.
+              </p>
+            </section>
+
+            <!-- 6. Customer Data and Privacy -->
+            <section id="customer-data-and-privacy" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">6. Customer Data and Privacy</h2>
+              <p class="leading-relaxed">
+                You retain ownership of all data you submit to the Services. You represent and warrant that you have a legal basis for processing and contacting any prospects whose data you upload or process through Marketio. You are responsible for compliance with applicable data protection and anti-spam laws.
+              </p>
+            </section>
+
+            <!-- 7. Intellectual Property -->
+            <section id="intellectual-property" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">7. Intellectual Property</h2>
+              <p class="leading-relaxed">
+                The Services, including all software, content, and features, are owned by Marketio LLC and protected by applicable intellectual property laws. You are granted a limited, non-exclusive, non-transferable licence to access and use the Services for your internal business purposes.
+              </p>
+            </section>
+
+            <!-- 8. Disclaimers -->
+            <section id="disclaimers" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">8. Disclaimers</h2>
+              <p class="leading-relaxed uppercase text-sm font-semibold tracking-wide text-white">
+                The Services are provided on an “as is” and “as available” basis. Marketio disclaims all warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement. AI-generated content or agent actions are not warranted to be accurate or suitable for any particular purpose.
+              </p>
+            </section>
+
+            <!-- 9. Limitation of Liability -->
+            <section id="limitation-of-liability" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">9. Limitation of Liability</h2>
+              <p class="leading-relaxed uppercase text-sm font-semibold tracking-wide text-white">
+                To the maximum extent permitted by law, Marketio and its officers, directors, and employees shall not be liable for any indirect, incidental, special, or consequential damages. In no event shall our total liability exceed the greater of (a) the amount you paid in the 12 months preceding the claim or (b) $100 USD.
+              </p>
+            </section>
+
+            <!-- 10. Indemnification -->
+            <section id="indemnification" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">10. Indemnification</h2>
+              <p class="leading-relaxed">
+                You agree to indemnify and hold harmless Marketio LLC from claims, liabilities, damages, costs, and expenses arising from your use of the Services, violation of these Terms, or your prospect outreach activities.
+              </p>
+            </section>
+
+            <!-- 11. Term and Termination -->
+            <section id="term-and-termination" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">11. Term and Termination</h2>
+              <p class="leading-relaxed">
+                Either party may terminate with 30 days’ written notice. We may terminate immediately for material breach. Upon termination, you may export your data. We will retain and delete your data in accordance with our <a href="/legal/privacy/" class="text-orange hover:underline">Privacy Policy</a>.
+              </p>
+            </section>
+
+            <!-- 12. Governing Law -->
+            <section id="governing-law" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">12. Governing Law</h2>
+              <p class="leading-relaxed">
+                These Terms are governed by the laws of the State of Delaware, United States. Disputes shall first be subject to good-faith negotiation. If unresolved within 30 days, disputes shall be submitted to binding arbitration under the American Arbitration Association (AAA) rules in Delaware.
+              </p>
+            </section>
+
+            <!-- 13. Contact -->
+            <section id="contact" class="scroll-mt-24 space-y-4 border-t border-white/10 pt-8">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">13. Contact</h2>
+              <p class="leading-relaxed">
+                Marketio LLC (Delaware)<br />
+                Email: <a href="mailto:support@marketio.net" class="text-orange hover:underline">support@marketio.net</a><br />
+                Website: <a href="https://marketio.net" class="text-orange hover:underline">marketio.net</a>
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

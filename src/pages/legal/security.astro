@@ -1,0 +1,148 @@
+---
+// src/pages/legal/security.astro
+// Security overview page detailing data protection and application security practices.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const sections = [
+  { id: 'infrastructure-security', title: 'Infrastructure Security' },
+  { id: 'data-encryption', title: 'Data Encryption' },
+  { id: 'access-controls', title: 'Access Controls' },
+  { id: 'application-security', title: 'Application Security' },
+  { id: 'incident-response', title: 'Incident Response' },
+  { id: 'compliance-alignment', title: 'Compliance Alignment' },
+  { id: 'vulnerability-disclosure', title: 'Vulnerability Disclosure' },
+];
+---
+
+<BaseLayout
+  title="Security Overview — Marketio"
+  description="Security at Marketio. Understand how we secure our infrastructure, encrypt data, restrict access, and manage application security."
+  path="/legal/security/"
+  robots="noindex,follow"
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl">
+        <!-- Header -->
+        <div class="border-b border-white/10 pb-8">
+          <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Security at Marketio</h1>
+          <p class="mt-4 text-base text-white/70 leading-relaxed max-w-2xl">
+            We take the security of your data seriously. Here’s how we protect it.
+          </p>
+        </div>
+
+        <!-- Layout with Table of Contents and Content Grid -->
+        <div class="mt-12 lg:grid lg:grid-cols-[250px_1fr] lg:gap-12">
+          <!-- Sidebar Contents -->
+          <aside class="hidden lg:block">
+            <div class="sticky top-24">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/40">Topics</h2>
+              <nav class="mt-4" aria-label="Table of contents">
+                <ul class="space-y-3">
+                  {sections.map((s) => (
+                    <li>
+                      <a
+                        href={`#${s.id}`}
+                        class="text-sm text-white/60 transition-colors duration-200 hover:text-orange focus:text-orange block"
+                      >
+                        {s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Document Flow -->
+          <div class="text-white/80 space-y-12 max-w-2xl lg:max-w-none">
+            <!-- Mobile contents list -->
+            <nav class="block lg:hidden border border-white/10 bg-black/40 rounded-xl p-6 mb-8" aria-label="Table of contents menu">
+              <h2 class="text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">Topics</h2>
+              <ul class="grid gap-2 sm:grid-cols-2">
+                {sections.map((s) => (
+                  <li>
+                    <a href={`#${s.id}`} class="text-sm text-orange hover:underline block">
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <!-- Infrastructure Security -->
+            <section id="infrastructure-security" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Infrastructure Security</h2>
+              <p class="leading-relaxed">
+                Marketio is hosted entirely on Amazon Web Services (AWS). Our infrastructure uses network segmentation, access controls, and continuous monitoring. We operate across multiple availability zones for high availability.
+              </p>
+            </section>
+
+            <!-- Data Encryption -->
+            <section id="data-encryption" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Data Encryption</h2>
+              <p class="leading-relaxed">
+                All data transmitted to and from Marketio is encrypted in transit using TLS 1.2 or higher. Data stored on our systems is encrypted at rest using AES-256 encryption.
+              </p>
+            </section>
+
+            <!-- Access Controls -->
+            <section id="access-controls" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Access Controls</h2>
+              <p class="leading-relaxed">
+                Access to production systems is restricted to authorised personnel only, with multi-factor authentication (MFA) enforced across all internal accounts. We operate on a principle of least privilege.
+              </p>
+            </section>
+
+            <!-- Application Security -->
+            <section id="application-security" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Application Security</h2>
+              <p class="leading-relaxed">
+                We follow secure development practices and conduct regular security reviews. Our AI components, powered by Anthropic Claude, are deployed within access-controlled environments and are not permitted to exfiltrate customer data.
+              </p>
+            </section>
+
+            <!-- Incident Response -->
+            <section id="incident-response" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Incident Response</h2>
+              <p class="leading-relaxed">
+                In the event of a security incident affecting your data, Marketio will notify affected customers within 72 hours of becoming aware of the breach (or as required by applicable law).
+              </p>
+            </section>
+
+            <!-- Compliance Alignment -->
+            <section id="compliance-alignment" class="scroll-mt-24 space-y-4">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Compliance Alignment</h2>
+              <p class="leading-relaxed">
+                Marketio is designed with compliance in mind, including alignment with GDPR, CCPA, CAN-SPAM, and CASL. For Data Processing Agreements (DPAs), contact <a href="mailto:support@marketio.net" class="text-orange hover:underline">support@marketio.net</a>.
+              </p>
+            </section>
+
+            <!-- Vulnerability Disclosure -->
+            <section id="vulnerability-disclosure" class="scroll-mt-24 space-y-4 border-t border-white/10 pt-8">
+              <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Vulnerability Disclosure</h2>
+              <h3 class="text-base font-semibold text-white">Found a security issue?</h3>
+              <p class="leading-relaxed">
+                If you’ve discovered a potential vulnerability in our platform, please disclose it responsibly. We commit to acknowledging receipt within 48 hours and not pursuing legal action against good-faith security researchers.
+              </p>
+              <div class="pt-4">
+                <a
+                  href="mailto:support@marketio.net?subject=Responsible%20Security%20Disclosure"
+                  class="inline-block rounded-lg bg-orange px-6 py-3 font-semibold text-white transition-transform duration-200 hover:scale-[1.02]"
+                >
+                  Report a Vulnerability
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
