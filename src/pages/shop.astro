@@ -1,0 +1,675 @@
+---
+// src/pages/shop.astro
+// Curated Marketer Infrastructure Vault (/shop/)
+// Enterprise-tier allocations, wholesale surplus outbound infrastructure, and vetted software licenses.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const trustSignals = [
+  {
+    title: '100% Replacement SLA',
+    desc: '24-hour instant replacement guarantee on any flagged license or console during active tenure.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  },
+  {
+    title: 'Audited & Authenticated',
+    desc: 'Pre-screened and provisioned by Marketio’s deliverability engineers. No shared risk or blacklisted IPs.',
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+  },
+  {
+    title: 'Surplus Fleet Allocations',
+    desc: 'Direct access to wholesale partner volume procured for our high-ticket agency operations at cost.',
+    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+  },
+  {
+    title: 'Instant Fast-Lane Delivery',
+    desc: 'Rapid onboarding via Telegram/WhatsApp direct console handover within 2–4 hours of request.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+];
+
+const products = [
+  {
+    id: 'linkedin-sales-nav',
+    name: 'LinkedIn Sales Navigator Advanced',
+    badge: 'High-Demand Allocation',
+    popular: true,
+    description: 'Official private activation & account upgrade for high-volume B2B outreach and agency lead generation.',
+    tiers: [
+      { label: '6 Months', price: '$120', retail: '$480', value: '6-months-120' },
+      { label: '1 Year', price: '$200', retail: '$960', value: '1-year-200' },
+    ],
+    defaultPrice: '$120',
+    defaultTier: '6 Months Access ($120 USD)',
+    features: [
+      'Official private activation / upgrade on your personal or burner profile',
+      'Zero credential handover required (activation via private invite link)',
+      '50 InMails/month, advanced lead & account filters, unlimited search alerts',
+      '100% replacement warranty during the active subscription period',
+      'Clean IP activation compatible with scrapers & automations',
+    ],
+  },
+  {
+    id: 'google-workspace-admin',
+    name: 'Google Workspace Admin Console (300 Seats)',
+    badge: 'Cold Outbound Infrastructure',
+    popular: false,
+    description: 'Super-admin console handover with 300 active seats allotment for creating scaled mailbox rotation fleets.',
+    defaultPrice: '$250',
+    defaultTier: 'One-Time Allocation ($250 USD)',
+    retail: '$1,800+/mo retail value',
+    features: [
+      'Full Super-Admin handover (ownership transferred directly to you)',
+      '300 active seat allocations ready for mailbox provisioning',
+      'Clean domain setup ready with custom domain association support',
+      'Essential for cold outbound fleet creation & automated API syncs',
+      'Pre-warmed administrative tenure with zero cross-tenant contamination',
+    ],
+  },
+  {
+    id: 'microsoft-365-tenant',
+    name: 'Microsoft 365 Admin Tenant Accounts',
+    badge: 'Enterprise Deliverability',
+    popular: false,
+    description: 'Dedicated Microsoft 365 enterprise tenant with Global Admin privileges for isolated cold mail infrastructure.',
+    defaultPrice: '$180',
+    defaultTier: 'One-Time Allocation ($180 USD)',
+    retail: '$900+ retail value',
+    features: [
+      'Dedicated Microsoft 365 tenant with permanent Global Admin rights',
+      'Pre-provisioned Exchange Online environment for high-volume mail',
+      'Dedicated IP reputation history with zero shared IP footprint',
+      'Compatible with Smartlead, Instantly, and custom API sequencers',
+      'Direct DNS configuration assistance (SPF, DKIM, DMARC) included',
+    ],
+  },
+  {
+    id: 'apollo-unlimited',
+    name: 'Apollo Unlimited Export & B2B Scraper Toolkit',
+    badge: 'Uncapped Data Extraction',
+    popular: false,
+    description: 'Uncapped B2B contact extraction without standard export limits, enriched with verified emails and direct dials.',
+    tiers: [
+      { label: 'Monthly', price: '$80', retail: '$199/mo', value: 'monthly-80' },
+      { label: 'Lifetime Deal', price: '$190', retail: '$599', value: 'lifetime-190' },
+    ],
+    defaultPrice: '$80',
+    defaultTier: 'Monthly Access ($80 USD/mo)',
+    features: [
+      'Uncapped B2B contact extraction without standard tier export caps',
+      'Verified direct work emails and mobile phone enrichment',
+      'Instant CSV exports formatted for sequencers and CRM ingestion',
+      'Real-time phone number reveal enabled',
+      'Guaranteed active tenure with rapid replacement SLA',
+    ],
+  },
+  {
+    id: 'enterprise-fleet-bundle',
+    name: 'Enterprise Agency Fleet Bundle (Done-For-You)',
+    badge: 'Turnkey Infrastructure',
+    popular: false,
+    description: 'Fully configured and warmed outbound infrastructure fleet architected by Marketio’s deliverability team.',
+    defaultPrice: 'From $500',
+    defaultTier: 'Custom Allocation (Starting at $500 USD)',
+    retail: 'Saves 40+ hours setup',
+    features: [
+      '50+ aged domains and 150+ Google/M365 outbound mailboxes',
+      'Custom tracking domains and automated SPF/DKIM/DMARC architecture',
+      'Gradual 21-day algorithmic warmup schedule configured in Smartlead/Instantly',
+      'Dedicated deliverability engineer assigned for DNS validation',
+      'Turnkey handover with CSV creds and automated monitoring dashboard',
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: 'Why are these infrastructure allocations priced significantly below retail?',
+    a: 'Marketio provisions millions of monthly outbound touches across our client roster and procures wholesale enterprise allotments in bulk. Rather than letting surplus partner allotments sit idle, we release excess capacity directly to peer agencies and growth operators at near-cost wholesale rates.',
+  },
+  {
+    q: 'What is the Marketio 100% Replacement Warranty SLA?',
+    a: 'Every license and admin console allocated through the Vault is backed by a strict 24-hour replacement SLA. If any account experiences an administrative flag, limitation, or downtime during its active tenure, our engineering team replaces or re-provisions it within 24 hours at zero charge.',
+  },
+  {
+    q: 'Do you require access to my personal passwords or existing accounts?',
+    a: 'Never. Upgrades (such as LinkedIn Sales Navigator) are activated through private official invitation links without sharing passwords. Dedicated consoles (Google Workspace & M365) are handed over as fresh Global/Super Admin tenants where you immediately set your own credentials.',
+  },
+  {
+    q: 'What payment methods are supported for allocation requests?',
+    a: 'We accept Stripe (Credit/Debit Cards), Wise, direct Bank Wire (ACH/SWIFT), and USDT/Crypto for international agency operators. Payment invoices are issued immediately upon allocation reservation.',
+  },
+  {
+    q: 'Can Marketio manage and run outreach campaigns on this infrastructure?',
+    a: 'Absolutely. If you want turnkey outbound execution rather than managing infrastructure yourself, our AI Growth Engine deploys autonomous SDR agents that prospect, warm mailboxes, and book high-ticket meetings on autopilot.',
+  },
+];
+
+const shopItemsForSchema = products.map((p) => ({
+  name: p.name,
+  description: p.description,
+  price: p.defaultPrice.replace(/[^0-9]/g, '') || '120',
+}));
+---
+
+<BaseLayout
+  title="Curated Infrastructure Vault — Marketio"
+  description="Vetted enterprise allocations & wholesale outbound infrastructure for growth agencies. Audited Google Workspace, M365, LinkedIn Sales Nav, Apollo."
+  path="/shop/"
+  schema="shop"
+  shopItems={shopItemsForSchema}
+>
+  <Navbar />
+
+  <main id="main" class="pt-32 pb-24">
+    <!-- Hero Section -->
+    <section class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-orange/40 bg-orange/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-orange">
+          <span class="h-2 w-2 rounded-full bg-orange animate-pulse"></span>
+          The Marketio Infrastructure Vault
+        </div>
+
+        <h1 class="mt-6 text-balance text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl text-white">
+          Curated Growth Infrastructure. <br class="hidden sm:inline" />
+          <span class="text-orange">Wholesale Agency Allocations.</span>
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+          Enterprise-tier volume access, audited infrastructure, and surplus partner allotments pre-screened by Marketio’s internal engineering team for growth marketers and agency founders.
+        </p>
+
+        <!-- Wholesale Surplus Rationale Box -->
+        <div class="mx-auto mt-8 max-w-2xl rounded-2xl border border-white/10 bg-black p-5 text-left text-sm text-white/60">
+          <div class="flex items-start gap-3">
+            <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange/20 text-xs font-bold text-orange">
+              ℹ
+            </span>
+            <p class="leading-relaxed">
+              <strong class="text-white">Why is pricing so accessible?</strong> Marketio provisions millions of monthly outbound touches and procures surplus enterprise fleet allotments. Excess partner allocations are released directly to peer agencies at wholesale rates, backed by our 100% replacement warranty.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Strip -->
+    <section class="mt-16 border-y border-white/5 bg-black">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+        {trustSignals.map((s) => (
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange/10 text-orange">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={s.icon} />
+                </svg>
+              </span>
+              <h3 class="font-semibold text-white text-sm">{s.title}</h3>
+            </div>
+            <p class="text-xs leading-relaxed text-white/60">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Catalog Grid -->
+    <section class="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-orange">Live Inventory</p>
+          <h2 class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Available Infrastructure Allocations</h2>
+        </div>
+        <p class="text-sm text-white/50 max-w-md">
+          All allocations include direct handover, zero credential sharing, and our 24h replacement SLA guarantee.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {products.map((p) => (
+          <div
+            class:list={[
+              'relative flex flex-col justify-between rounded-2xl border bg-black p-7 transition-all duration-200 hover:border-orange/50',
+              p.popular ? 'border-orange/60 shadow-lg shadow-orange/10' : 'border-white/10',
+            ]}
+            id={`product-card-${p.id}`}
+          >
+            {p.popular && (
+              <div class="absolute -top-3.5 right-6 rounded-full border border-orange bg-orange px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-white shadow-sm">
+                Most Popular
+              </div>
+            )}
+
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="inline-block rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-orange">
+                  {p.badge}
+                </span>
+                {p.retail && (
+                  <span class="text-[11px] text-white/40 line-through">
+                    {p.retail}
+                  </span>
+                )}
+              </div>
+
+              <h3 class="mt-4 text-xl font-bold text-white tracking-tight leading-snug">
+                {p.name}
+              </h3>
+
+              <p class="mt-2 text-sm text-white/60 leading-relaxed min-h-[40px]">
+                {p.description}
+              </p>
+
+              <!-- Tier switcher if available -->
+              {p.tiers ? (
+                <div class="mt-6 rounded-xl border border-white/10 bg-charcoal p-1.5 flex items-center gap-1.5">
+                  {p.tiers.map((t, idx) => (
+                    <button
+                      type="button"
+                      class:list={[
+                        'tier-toggle flex-1 rounded-lg py-1.5 text-xs font-semibold transition-all duration-150',
+                        idx === 0
+                          ? 'bg-orange text-white shadow-sm'
+                          : 'text-white/60 hover:text-white',
+                      ]}
+                      data-target-card={p.id}
+                      data-price={t.price}
+                      data-retail={t.retail}
+                      data-tier-label={`${p.name} (${t.label} - ${t.price} USD)`}
+                    >
+                      {t.label} ({t.price})
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+
+              <!-- Pricing Display -->
+              <div class="mt-6 flex items-baseline gap-2">
+                <span class="text-3xl font-extrabold text-white price-display" id={`price-display-${p.id}`}>
+                  {p.defaultPrice}
+                </span>
+                <span class="text-xs uppercase tracking-wider text-white/40">USD allocation</span>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="mt-6 space-y-3 border-t border-white/5 pt-6 text-sm text-white/70">
+                {p.features.map((f) => (
+                  <li class="flex items-start gap-2.5">
+                    <svg class="h-4 w-4 shrink-0 text-orange mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="text-xs leading-relaxed">{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-8 border-t border-white/5 pt-6">
+              <button
+                type="button"
+                class="request-btn w-full rounded-xl bg-orange px-5 py-3 text-center text-sm font-semibold text-white shadow-md shadow-orange/20 transition-all duration-200 hover:scale-[1.02] hover:bg-orange/90"
+                data-product-name={p.name}
+                data-price={p.defaultPrice}
+                data-tier={p.defaultTier}
+                id={`cta-btn-${p.id}`}
+              >
+                Request Allocation →
+              </button>
+              <p class="mt-2 text-center text-[11px] text-white/40">
+                24h Replacement SLA Guarantee Included
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- High-Ticket Upsell Bridge Section -->
+    <section class="mx-auto mt-24 max-w-7xl px-6 lg:px-8">
+      <div class="relative overflow-hidden rounded-3xl border border-orange/40 bg-black p-10 text-center sm:p-14">
+        <div class="inline-block rounded-full border border-orange/30 bg-orange/10 px-3.5 py-1 text-xs font-semibold text-orange mb-4">
+          Need Autonomous Full-Agency Execution?
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight text-white sm:text-4xl">
+          Have the infrastructure, but need autonomous pipeline?
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/70">
+          Our AI Growth Engine deploys autonomous SDR agents that prospect, warm mailboxes, and book high-ticket meetings on autopilot using this exact infrastructure.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="/ai-automation/"
+            class="rounded-xl bg-orange px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange/25 transition-transform duration-200 hover:scale-[1.03]"
+          >
+            Explore AI Growth Engine →
+          </a>
+          <a
+            href="/deliverability/"
+            class="rounded-xl border border-white/20 bg-charcoal px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-orange hover:text-white"
+          >
+            Deliverability SLA Details
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mx-auto mt-24 max-w-4xl px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="text-xs font-semibold uppercase tracking-wider text-orange">Transparency & Operations</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group rounded-2xl border border-white/10 bg-black p-6 transition-colors duration-150 open:border-orange/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-white text-base [&::-webkit-details-marker]:hidden">
+              <span>{faq.q}</span>
+              <span class="ml-4 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/20 text-white/60 transition-transform duration-200 group-open:rotate-45 group-open:text-orange group-open:border-orange/50">
+                +
+              </span>
+            </summary>
+            <p class="mt-4 text-sm leading-relaxed text-white/70 border-t border-white/5 pt-4">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Request & Invoice Modal -->
+  <dialog
+    id="order-modal"
+    class="fixed inset-0 z-50 m-auto max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/20 bg-black p-0 text-white shadow-2xl backdrop:bg-black/80"
+  >
+    <div class="p-6 sm:p-8">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-white/10 pb-5">
+        <div>
+          <div class="inline-flex items-center gap-1.5 rounded-full border border-orange/40 bg-orange/10 px-2.5 py-0.5 text-[11px] font-semibold text-orange uppercase tracking-wider">
+            Fast-Lane Allocation
+          </div>
+          <h3 class="mt-2 text-xl font-bold text-white">Reserve Infrastructure Allocation</h3>
+        </div>
+        <button
+          type="button"
+          id="close-modal-btn"
+          class="rounded-lg p-1.5 text-white/50 hover:bg-white/10 hover:text-white"
+          aria-label="Close modal"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Form Body -->
+      <form id="order-form" class="mt-6 space-y-4">
+        <div>
+          <label for="form-product-tier" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+            Selected Infrastructure Allocation
+          </label>
+          <input
+            type="text"
+            id="form-product-tier"
+            name="allocation_item"
+            readonly
+            class="mt-1.5 w-full rounded-xl border border-orange/30 bg-charcoal px-4 py-2.5 text-sm font-semibold text-orange outline-none"
+          />
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="form-name" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+              Full Name *
+            </label>
+            <input
+              type="text"
+              id="form-name"
+              name="name"
+              required
+              placeholder="Alex Carter"
+              class="mt-1.5 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-2.5 text-sm text-white focus:border-orange focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="form-email" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+              Work Email *
+            </label>
+            <input
+              type="email"
+              id="form-email"
+              name="email"
+              required
+              placeholder="alex@agency.com"
+              class="mt-1.5 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-2.5 text-sm text-white focus:border-orange focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="form-company" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+              Agency / Company Name *
+            </label>
+            <input
+              type="text"
+              id="form-company"
+              name="company"
+              required
+              placeholder="Acme Growth"
+              class="mt-1.5 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-2.5 text-sm text-white focus:border-orange focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="form-chat" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+              Telegram / WhatsApp (Fast-Lane)
+            </label>
+            <input
+              type="text"
+              id="form-chat"
+              name="telegram_whatsapp"
+              placeholder="@username or phone"
+              class="mt-1.5 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-2.5 text-sm text-white focus:border-orange focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="form-payment" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+            Preferred Payment Settlement
+          </label>
+          <select
+            id="form-payment"
+            name="payment_method"
+            class="mt-1.5 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-2.5 text-sm text-white focus:border-orange focus:outline-none"
+          >
+            <option value="Stripe Card">Stripe / Credit & Debit Card</option>
+            <option value="Wise Transfer">Wise (Multi-Currency Transfer)</option>
+            <option value="Bank Wire">Bank Wire (ACH / SWIFT USD)</option>
+            <option value="USDT Crypto">USDT / USDC (TRC-20 / ERC-20)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="form-notes" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+            Notes / Specific Requirements (Optional)
+          </label>
+          <textarea
+            id="form-notes"
+            name="notes"
+            rows="2"
+            placeholder="Target domain names, preferred activation timelines, etc."
+            class="mt-1.5 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-2 text-sm text-white focus:border-orange focus:outline-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          id="submit-order-btn"
+          class="mt-2 w-full rounded-xl bg-orange py-3 text-center text-sm font-bold text-white shadow-lg shadow-orange/25 transition-transform duration-200 hover:scale-[1.02]"
+        >
+          Generate Allocation Invoice →
+        </button>
+
+        <p class="text-center text-[11px] text-white/40">
+          Backed by the Marketio 24-Hour 100% Replacement SLA Guarantee.
+        </p>
+      </form>
+
+      <!-- Confirmation Screen (Hidden initially) -->
+      <div id="order-success" class="hidden text-center py-4">
+        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-orange/20 text-orange">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h4 class="mt-4 text-xl font-bold text-white">Allocation Reserved!</h4>
+        <p class="mt-2 text-sm text-white/70">
+          Your allocation invoice has been queued. For instant 15-minute priority handover, message our infrastructure desk directly:
+        </p>
+
+        <div class="mt-6 flex flex-col gap-3">
+          <a
+            id="fast-lane-tg-btn"
+            href="https://t.me/marketio_support"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center gap-2 rounded-xl bg-[#229ED9] py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            <span>💬 Fast-Track on Telegram →</span>
+          </a>
+          <a
+            id="fast-lane-wa-btn"
+            href="https://wa.me/?text=Hi%20Marketio,%20I%20just%20requested%20an%20infrastructure%20allocation"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            <span>📱 Fast-Track on WhatsApp →</span>
+          </a>
+        </div>
+
+        <button
+          type="button"
+          id="finish-modal-btn"
+          class="mt-6 text-xs text-white/50 underline hover:text-white"
+        >
+          Close window
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <Footer />
+
+  <!-- Client-side script for Modal and Tiers -->
+  <script is:inline>
+    // Handle tier buttons
+    document.querySelectorAll('.tier-toggle').forEach(function(button) {
+      button.addEventListener('click', function() {
+        var cardId = button.getAttribute('data-target-card');
+        var price = button.getAttribute('data-price');
+        var tierLabel = button.getAttribute('data-tier-label');
+
+        // Toggle active style
+        var siblings = button.parentElement.querySelectorAll('.tier-toggle');
+        siblings.forEach(function(sib) {
+          sib.classList.remove('bg-orange', 'text-white', 'shadow-sm');
+          sib.classList.add('text-white/60');
+        });
+        button.classList.add('bg-orange', 'text-white', 'shadow-sm');
+        button.classList.remove('text-white/60');
+
+        // Update card price display
+        var priceDisplay = document.getElementById('price-display-' + cardId);
+        if (priceDisplay) {
+          priceDisplay.textContent = price;
+        }
+
+        // Update CTA button data attributes
+        var ctaBtn = document.getElementById('cta-btn-' + cardId);
+        if (ctaBtn) {
+          ctaBtn.setAttribute('data-price', price);
+          ctaBtn.setAttribute('data-tier', tierLabel);
+        }
+      });
+    });
+
+    // Handle Order Modal
+    var modal = document.getElementById('order-modal');
+    var closeModalBtn = document.getElementById('close-modal-btn');
+    var finishModalBtn = document.getElementById('finish-modal-btn');
+    var orderForm = document.getElementById('order-form');
+    var orderSuccess = document.getElementById('order-success');
+    var allocationInput = document.getElementById('form-product-tier');
+    var tgBtn = document.getElementById('fast-lane-tg-btn');
+    var waBtn = document.getElementById('fast-lane-wa-btn');
+
+    document.querySelectorAll('.request-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var tier = btn.getAttribute('data-tier');
+        if (allocationInput) {
+          allocationInput.value = tier;
+        }
+        if (orderForm && orderSuccess) {
+          orderForm.classList.remove('hidden');
+          orderSuccess.classList.add('hidden');
+        }
+        if (modal && typeof modal.showModal === 'function') {
+          modal.showModal();
+        }
+      });
+    });
+
+    function closeModal() {
+      if (modal && typeof modal.close === 'function') {
+        modal.close();
+      }
+    }
+
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (finishModalBtn) finishModalBtn.addEventListener('click', closeModal);
+
+    // Close when clicking modal backdrop
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        var rect = modal.getBoundingClientRect();
+        var isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
+          && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+        if (!isInDialog) {
+          modal.close();
+        }
+      });
+    }
+
+    // Form submission
+    if (orderForm) {
+      orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var selectedItem = allocationInput ? allocationInput.value : 'Infrastructure Allocation';
+        var nameInput = document.getElementById('form-name');
+        var clientName = nameInput ? nameInput.value : 'Operator';
+
+        var encodedMsg = encodeURIComponent(
+          'Hi Marketio, I just reserved an allocation for: ' + selectedItem + ' (Contact: ' + clientName + '). Please send invoice & handover instructions.'
+        );
+
+        if (tgBtn) {
+          tgBtn.href = 'https://t.me/marketio_support?text=' + encodedMsg;
+        }
+        if (waBtn) {
+          waBtn.href = 'https://wa.me/?text=' + encodedMsg;
+        }
+
+        // Show confirmation screen
+        orderForm.classList.add('hidden');
+        if (orderSuccess) {
+          orderSuccess.classList.remove('hidden');
+        }
+      });
+    }
+  </script>
+</BaseLayout>
