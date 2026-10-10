@@ -80,3 +80,32 @@ export function service({ site = SITE, name, description, offers = [] }) {
     ...(offers.length > 0 ? { makesOffer: offers } : {}),
   };
 }
+
+/** Shop catalog schema — CollectionPage / ItemList / Offer catalog */
+export function shopCatalog({ site = SITE, name, description, items = [] }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description,
+    url: `${site}/shop/`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Offer',
+          name: item.name,
+          description: item.description,
+          price: item.price,
+          priceCurrency: 'USD',
+          seller: {
+            '@type': 'Organization',
+            name: 'Marketio',
+          },
+        },
+      })),
+    },
+  };
+}
