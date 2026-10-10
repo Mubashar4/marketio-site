@@ -1,14 +1,14 @@
 # CodeGraph — Live Dependency Map
 
 > Version: 1.0.0 · Regenerated from actual diffs only (see SPEC.md)
-> Last updated: 2026-08-29 · 4 navbar pages built (3 solutions + blog index)
+> Last updated: 2026-10-10 · Spec reconciliation & graph audit
 
 ## Overview
 
 | Metric | Value |
 |---|---|
-| Nodes | 33 (4 spec · 5 asset · 2 cfg · 1 layout · 3 component · 1 lib · 12 page · 1 style · 4 build-output) |
-| Edges | 46 |
+| Nodes | 29 (4 spec · 5 asset · 2 cfg · 1 layout · 3 component · 1 lib · 12 page · 1 style) |
+| Edges | 50 |
 | Site source files | 19 (`src/` populated with solutions, blog, legal, careers, contact) |
 | Graph health | ACTIVE |
 
@@ -26,10 +26,10 @@
 
 ### asset (crawler-facing)
 - `ast:public/robots.txt` — [`public/robots.txt`](../../public/robots.txt)
-- `ast:public/llm.txt` — *(planned)*
-- `ast:public/ai-context.json` — *(planned)*
-- `ast:public/_headers` — *(planned)*
-- `ast:public/_redirects` — *(planned)*
+- `ast:public/llm.txt` — [`public/llm.txt`](../../public/llm.txt)
+- `ast:public/ai-context.json` — [`public/ai-context.json`](../../public/ai-context.json)
+- `ast:public/_headers` — [`public/_headers`](../../public/_headers)
+- `ast:public/_redirects` — [`public/_redirects`](../../public/_redirects)
 
 ### lay (layout)
 - `lay:src/layouts/BaseLayout.astro` — [`src/layouts/BaseLayout.astro`](../../src/layouts/BaseLayout.astro) — SEO shell + JSON-LD injection
@@ -85,7 +85,6 @@ Only SPEC-defined relations appear here ([`SPEC.md`](SPEC.md)):
 | `page:/blog` | belongs-to | `lay:src/layouts/BaseLayout.astro` |
 | `page:/blog` | renders | `cmp:src/components/Navbar.astro` |
 | `page:/blog` | renders | `cmp:src/components/Footer.astro` |
-| `lay:src/layouts/BaseLayout.astro` | imports | `cmp:src/lib/schema.js` (service helper added) |
 | `page:/contact` | belongs-to | `lay:src/layouts/BaseLayout.astro` |
 | `page:/contact` | renders | `cmp:src/components/Navbar.astro` |
 | `page:/contact` | renders | `cmp:src/components/Footer.astro` |
@@ -109,10 +108,11 @@ Only SPEC-defined relations appear here ([`SPEC.md`](SPEC.md)):
 | `cfg:tailwind.config.mjs` | constrained-by | `spec:brand` |
 | `lay:src/layouts/BaseLayout.astro` | constrained-by | `spec:seo-schema` |
 | `page:/` | constrained-by | `spec:seo-schema` |
-| all site artifacts | constrained-by | `spec:architecture` |
-| styled artifacts | constrained-by | `spec:brand` |
 | `ast:public/robots.txt` | feeds | sitemap crawlers |
 | `ast:public/llm.txt` | feeds | LLM crawlers |
+| `ast:public/ai-context.json` | feeds | LLM crawlers |
+| `ast:public/_headers` | constrained-by | `spec:architecture` |
+| `ast:public/_redirects` | constrained-by | `spec:architecture` |
 | `cfg:astro.config.mjs` | imports | `@astrojs/sitemap` (pinned 3.2.1) |
 | `cfg:astro.config.mjs` | imports | `@astrojs/tailwind` |
 | `cmp:src/components/HeroCanvas.astro` | constrained-by | `spec:brand` (canvas script uses only `#FF5500` / `#FAFAFA`) |
@@ -133,3 +133,5 @@ Only SPEC-defined relations appear here ([`SPEC.md`](SPEC.md)):
 | 2026-08-29 | Careers & Contact implementation: added careers and contact pages, updated footer navigation links. Build passes. | marketio-code |
 | 2026-08-29 | SyncLead de-branding: renamed "SyncLead Ops" → "Pipeline Sync" in `cmp:Navbar` and `cmp:Footer` links and routes (`/synclead-integration/` → `/pipeline-sync/`). Removed "SyncLead layer" from careers role description. Redesigned `page:/careers` layout (fixed section overlap, added values cards, general-application CTA, closing CTA). Build passes. | marketio-code |
 | 2026-08-29 | Four navbar pages built: added `page:/deliverability`, `page:/ai-automation`, `page:/pipeline-sync` (all with Service JSON-LD via new `service()` helper in schema.js + `schema="service"` prop in BaseLayout), and `page:/blog` index with placeholder posts. 12 pages total. Build passes. | marketio-code |
+| 2026-10-10 | Spec reconciliation & graph audit: aligned architecture.md target tree (pipeline-sync, 5 legal pages, careers, contact); fixed codegraph.md node count (29) and removed duplicate/meta edges. | marketio-architect |
+| 2026-10-10 | Crawler and deployment assets activated: public/llm.txt, public/ai-context.json, public/_headers, public/_redirects created; codegraph nodes and edges updated. | marketio-code |

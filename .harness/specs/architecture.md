@@ -1,6 +1,6 @@
 # Spec — Site Architecture & Conventions
 
-> Version: 1.0 · Owner: marketio-architect · Consumers: all roles
+> Version: 1.1 · Owner: marketio-architect · Consumers: all roles
 
 ## Stack (locked)
 
@@ -26,26 +26,29 @@ marketio-site/
 │   │   ├── HeroCanvas.astro    # animated autonomous agent pipeline (Prospect→Engage→Book→Close)
 │   │   ├── Navbar.astro
 │   │   ├── Footer.astro
-│   │   └── PricingCard.astro
+│   │   └── PricingCard.astro   # *(planned)*
 │   ├── layouts/
 │   │   └── BaseLayout.astro    # SEO shell + JSON-LD injection point
 │   ├── lib/
 │   │   └── schema.js           # single JSON-LD generator (seo-schema.md)
 │   ├── content/
-│   │   └── blog/               # technical teardowns ("The Blueprint")
+│   │   └── blog/               # *(planned for Content Collections migration)* technical teardowns ("The Blueprint")
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── deliverability.astro
 │   │   ├── ai-automation.astro
-│   │   ├── synclead-integration.astro
+│   │   ├── pipeline-sync.astro
+│   │   ├── careers.astro
+│   │   ├── contact.astro
 │   │   ├── blog/
 │   │   │   ├── index.astro
-│   │   │   └── [...slug].astro
+│   │   │   └── [...slug].astro # *(planned for Content Collections migration)*
 │   │   └── legal/
 │   │       ├── terms.astro
 │   │       ├── privacy.astro
-│   │       ├── dpa.astro
-│   │       └── sla.astro
+│   │       ├── cookie.astro
+│   │       ├── acceptable-use.astro
+│   │       └── security.astro
 │   └── styles/global.css       # @tailwind directives + base layer only
 ├── astro.config.mjs            # site URL, sitemap integration
 ├── tailwind.config.mjs         # brand tokens per specs/brand.md
@@ -74,8 +77,9 @@ marketio-site/
 - Mobile-first utilities, fluid `clamp()` sizing. Media queries allowed
   only where fluid techniques genuinely fail.
 
-## SyncLead Data-Flow Rule (product promise)
+## Unified Pipeline Sync Data-Flow Rule (product promise)
 
-Any page/diagram touching SyncLead must model: sequencer context of the
-original outreach flows losslessly into SyncLead scheduling/replies.
-Zero-data-loss language is mandatory in copy and architecture diagrams.
+Any page/diagram touching pipeline synchronization must model: sequencer context
+of the original outreach flows losslessly into CRM and calendar scheduling with
+zero data loss. Zero-data-loss language is mandatory in copy and architecture diagrams.
+Internal tooling names (such as SyncLead) are strictly banned from customer-facing materials.

@@ -1,0 +1,19 @@
+# Legacy route renames
+/synclead-integration/    /pipeline-sync/    301
+/synclead-integration     /pipeline-sync/    301
+
+# Shorthand route aliases to canonical pages
+/deliverability           /deliverability/   301
+/ai-automation            /ai-automation/    301
+/pipeline-sync            /pipeline-sync/    301
+/blog                     /blog/             301
+/careers                  /careers/          301
+/contact                  /contact/          301
+
+# Legal shorthand redirects
+/terms                    /legal/terms/      301
+/privacy                  /legal/privacy/    301
+/cookies                  /legal/cookie/     301
+/cookie                   /legal/cookie/     301
+/security                 /legal/security/   301
+/acceptable-use           /legal/acceptable-use/ 301

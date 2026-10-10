@@ -1,0 +1,37 @@
+# Marketio (https://marketio.net)
+Autonomous AI growth partner for established marketing agencies.
+
+## Overview
+Marketio deploys autonomous AI agents and managed deliverability infrastructure for established marketing agencies. Outreach pipelines run on autopilot across LinkedIn, email, and social, booking qualified discovery calls while agency teams focus on closing.
+
+## Core Offerings
+1. AI SDR / BDR Agents
+   - Autonomous multi-channel prospecting (LinkedIn, email, social).
+   - Dynamic message personalization at scale.
+   - Autonomous meeting qualification and calendar booking.
+
+2. Deliverability-as-a-Service
+   - Dedicated IP pools (zero shared reputation risk).
+   - Custom domain architecture: SPF, DKIM, DMARC, and custom tracking domains.
+   - Continuous automated warmup and rotational sending logic.
+   - Real-time inbox placement monitoring across Gmail, Outlook, and Yahoo with contractual SLAs.
+
+3. Unified Pipeline Sync
+   - Bi-directional sync into client CRMs (HubSpot, Salesforce, Pipedrive, etc.).
+   - Full conversational and outreach context preserved losslessly.
+   - Zero-data-loss guarantee between outbound engagement and calendar scheduling.
+
+4. White-Label Backend
+   - Agency-branded deliverability and AI operations backend.
+   - Full client isolation and custom domain masking.
+
+## Commercial Terms & Operational Guardrails
+- High-ticket retainer + setup fee agency model only (no commodity SaaS, no flat one-off spam packages).
+- Commodity and gray-market services are strictly excluded: no à la carte mailbox reselling, no scraped email lists, no LinkedIn account rentals.
+- Discovery call endpoint: https://calendly.com/mubashar_ali/mubashar
+
+## Technical Architecture
+- Framework: Astro (Static Output, zero-JS client default).
+- Hosting: Cloudflare Pages Edge Network.
+- Structured Data: Schema.org ProfessionalService & Service JSON-LD.
+- Canonical Domain: https://marketio.net

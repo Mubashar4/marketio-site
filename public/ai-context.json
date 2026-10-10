@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Marketio",
+  "legal_name": "Marketio LLC",
+  "url": "https://marketio.net",
+  "location": "Delaware, USA",
+  "entity_type": "ProfessionalService",
+  "description": "Autonomous AI growth infrastructure provider for marketing agencies — deploying AI SDR/BDR agents and managed deliverability systems that run outbound pipelines on autopilot.",
+  "target_market": "Established marketing agencies with high-ticket retainers",
+  "services": [
+    {
+      "name": "AI SDR / BDR Agents",
+      "slug": "ai-automation",
+      "url": "https://marketio.net/ai-automation/",
+      "description": "Autonomous agents prospect across LinkedIn, email and social, personalise at scale and book meetings — no SDR headcount required."
+    },
+    {
+      "name": "Deliverability-as-a-Service",
+      "slug": "deliverability",
+      "url": "https://marketio.net/deliverability/",
+      "description": "Managed email infrastructure: dedicated IP pools, domain architecture, continuous warmup, rotation, and inbox-placement monitoring."
+    },
+    {
+      "name": "Unified Pipeline Sync",
+      "slug": "pipeline-sync",
+      "url": "https://marketio.net/pipeline-sync/",
+      "description": "All conversations, replies and bookings feed directly into your CRM — full context preserved, nothing falls through the cracks."
+    },
+    {
+      "name": "White-Label Backend",
+      "slug": "white-label",
+      "description": "SLA-backed deliverability and AI operations delivered under partner agency brands."
+    }
+  ],
+  "excluded_offerings": [
+    "A la carte mailbox sales",
+    "LinkedIn account rentals / invite botting",
+    "Pre-packaged scraper lists",
+    "Low-ticket flat fee outbound blasts"
+  ],
+  "tech_stack": {
+    "ssg": "Astro",
+    "css": "Tailwind CSS",
+    "hosting": "Cloudflare Pages",
+    "client_js_budget": "0KB default, <8KB hero canvas"
+  },
+  "contact": {
+    "discovery_call": "https://calendly.com/mubashar_ali/mubashar"
+  }
+}
