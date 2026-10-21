@@ -4,6 +4,7 @@ const links = [
   { href: '/deliverability/', label: 'Deliverability' },
   { href: '/ai-automation/', label: 'AI Growth Engine' },
   { href: '/pipeline-sync/', label: 'Pipeline Sync' },
+  { href: '/shop/', label: 'Shop', isNew: true },
   { href: '/blog/', label: 'Blueprint' },
 ];
 const ctaHref = 'https://app.synclead.io/Mubashar/marketio-power-team';
@@ -20,8 +21,13 @@ const ctaHref = 'https://app.synclead.io/Mubashar/marketio-power-team';
     <ul class="hidden items-center gap-8 md:flex">
       {links.map((l) => (
         <li>
-          <a href={l.href} class="text-sm text-white/70 transition-colors duration-200 hover:text-white">
-            {l.label}
+          <a href={l.href} class="relative flex items-center gap-1.5 text-sm text-white/70 transition-colors duration-200 hover:text-white">
+            <span>{l.label}</span>
+            {l.isNew && (
+              <span class="inline-flex items-center rounded-full border border-orange/40 bg-orange/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-orange shadow-sm shadow-orange/30">
+                NEW
+              </span>
+            )}
           </a>
         </li>
       ))}
@@ -51,8 +57,13 @@ const ctaHref = 'https://app.synclead.io/Mubashar/marketio-power-team';
           <ul>
             {links.map((l) => (
               <li>
-                <a href={l.href} class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">
-                  {l.label}
+                <a href={l.href} class="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">
+                  <span>{l.label}</span>
+                  {l.isNew && (
+                    <span class="inline-flex items-center rounded-full border border-orange/40 bg-orange/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-orange shadow-sm shadow-orange/30">
+                      NEW
+                    </span>
+                  )}
                 </a>
               </li>
             ))}

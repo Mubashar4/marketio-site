@@ -2,7 +2,7 @@
 // BaseLayout — SEO shell + JSON-LD injection point (specs/seo-schema.md).
 // Every page renders through this layout; metadata is mandatory, never optional.
 import '../styles/global.css';
-import { professionalService, organization, service } from '../lib/schema.js';
+import { professionalService, organization, service, shopCatalog } from '../lib/schema.js';
 
 interface Props {
   title: string; // ≤ 60 chars, unique per page
@@ -11,9 +11,10 @@ interface Props {
   ogType?: string;
   ogImage?: string;
   robots?: string; // defaults to index,follow
-  schema?: 'home' | 'service' | 'none'; // solution pages emit Service
+  schema?: 'home' | 'service' | 'shop' | 'none'; // solution pages emit Service, shop emits shopCatalog
   serviceName?: string; // required when schema === 'service'
   serviceOffers?: { '@type': string; name: string; description: string }[];
+  shopItems?: { name: string; description: string; price: string }[];
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   schema = 'none',
   serviceName,
   serviceOffers,
+  shopItems,
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://marketio.net');
@@ -38,7 +40,9 @@ const jsonLd =
     ? [professionalService(site.href), organization(site.href)]
     : schema === 'service' && serviceName
       ? [service({ site: site.href, name: serviceName, description, offers: serviceOffers ?? [] })]
-      : [];
+      : schema === 'shop'
+        ? [shopCatalog({ site: site.href, name: title, description, items: shopItems ?? [] })]
+        : [];
 ---
 
 <!doctype html>
