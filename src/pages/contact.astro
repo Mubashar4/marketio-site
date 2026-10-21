@@ -5,7 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
+const ctaHref = 'https://app.synclead.io/Mubashar/marketio-power-team';
+const whatsappHref = 'https://wa.me/447351678783';
 ---
 
 <BaseLayout
@@ -72,13 +73,16 @@ const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
         <section aria-labelledby="form-heading" class="rounded-2xl border border-white/10 bg-black p-8 lg:col-span-7">
           <h2 id="form-heading" class="text-2xl font-bold tracking-tight text-white mb-2">Send an Enquiry</h2>
           <p class="text-sm text-white/50 mb-8">
-            Prefer text? Fill out our agency scope planner below, or email us at <a href="mailto:hello@marketio.net" class="text-orange hover:underline">hello@marketio.net</a>.
+            Prefer direct messaging? WhatsApp us at <a href={whatsappHref} target="_blank" rel="noopener" class="text-orange hover:underline font-medium">+44 7351 678783</a>, email <a href="mailto:hello@marketio.net" class="text-orange hover:underline">hello@marketio.net</a>, or submit your scope below.
           </p>
 
-          <form action="https://formspree.io/f/placeholder" method="POST" class="space-y-6">
+          <form action="https://formspree.io/f/xgaojrew" method="POST" class="space-y-6">
+            <input type="hidden" name="_next" value={ctaHref} />
+            <input type="hidden" name="_subject" value="New Marketio Scope Enquiry" />
+
             <div class="grid gap-6 sm:grid-cols-2">
               <div>
-                <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-white/50">Full Name</label>
+                <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-white/50">Full Name *</label>
                 <input
                   type="text"
                   name="name"
@@ -89,7 +93,7 @@ const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
                 />
               </div>
               <div>
-                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-white/50">Work Email</label>
+                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-white/50">Work Email *</label>
                 <input
                   type="email"
                   name="email"
@@ -103,12 +107,36 @@ const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
 
             <div class="grid gap-6 sm:grid-cols-2">
               <div>
+                <label for="company" class="block text-xs font-semibold uppercase tracking-wider text-white/50">Agency / Company Name *</label>
+                <input
+                  type="text"
+                  name="company"
+                  id="company"
+                  required
+                  class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white focus:border-orange focus:ring-1 focus:ring-orange"
+                  placeholder="Acme Growth"
+                />
+              </div>
+              <div>
+                <label for="whatsapp" class="block text-xs font-semibold uppercase tracking-wider text-white/50">WhatsApp (Fast-Lane) *</label>
+                <input
+                  type="tel"
+                  name="whatsapp"
+                  id="whatsapp"
+                  required
+                  class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white focus:border-orange focus:ring-1 focus:ring-orange"
+                  placeholder="+44 7351 678783"
+                />
+              </div>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
                 <label for="url" class="block text-xs font-semibold uppercase tracking-wider text-white/50">Agency Website</label>
                 <input
                   type="url"
                   name="url"
                   id="url"
-                  required
                   class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white focus:border-orange focus:ring-1 focus:ring-orange"
                   placeholder="https://agency.com"
                 />
@@ -144,7 +172,7 @@ const ctaHref = 'https://calendly.com/mubashar_ali/mubashar';
               type="submit"
               class="w-full rounded-xl border border-orange px-6 py-3.5 text-center text-sm font-semibold text-orange hover:bg-orange hover:text-white transition-all duration-200"
             >
-              Send Message
+              Send Message →
             </button>
           </form>
         </section>

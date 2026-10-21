@@ -28,7 +28,8 @@ Marketio deploys autonomous AI agents and managed deliverability infrastructure 
 ## Commercial Terms & Operational Guardrails
 - High-ticket retainer + setup fee agency model only (no commodity SaaS, no flat one-off spam packages).
 - Commodity and gray-market services are strictly excluded: no à la carte mailbox reselling, no scraped email lists, no LinkedIn account rentals.
-- Discovery call endpoint: https://calendly.com/mubashar_ali/mubashar
+- Discovery call endpoint: https://app.synclead.io/Mubashar/marketio-power-team
+- Direct WhatsApp endpoint: https://wa.me/447351678783
 
 ## Technical Architecture
 - Framework: Astro (Static Output, zero-JS client default).

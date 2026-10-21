@@ -26,6 +26,7 @@ marketio-site/
 │   │   ├── HeroCanvas.astro    # animated autonomous agent pipeline (Prospect→Engage→Book→Close)
 │   │   ├── Navbar.astro
 │   │   ├── Footer.astro
+│   │   ├── AllocationModal.astro # zero-JS infrastructure reservation dialog (fast-lane intake)
 │   │   └── PricingCard.astro   # *(planned)*
 │   ├── layouts/
 │   │   └── BaseLayout.astro    # SEO shell + JSON-LD injection point

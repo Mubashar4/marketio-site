@@ -1,0 +1,164 @@
+---
+// src/components/AllocationModal.astro
+// Fast-lane infrastructure reservation modal dialog.
+// Compliant with Marketio brand tokens and zero-JS budget.
+interface Props {
+  defaultAllocation?: string;
+}
+
+const { defaultAllocation = '6 Months Access ($120 USD)' } = Astro.props;
+const formEndpoint = 'https://formspree.io/f/xgaojrew';
+const calendarHref = 'https://app.synclead.io/Mubashar/marketio-power-team';
+---
+
+<dialog
+  id="allocation-modal"
+  class="fixed inset-0 z-50 m-auto w-full max-w-xl rounded-2xl border border-white/10 bg-black p-0 text-white shadow-2xl backdrop:bg-black/80 backdrop:backdrop-blur-sm open:animate-fade-in"
+  aria-labelledby="modal-title"
+>
+  <div class="relative p-6 sm:p-8">
+    <!-- Close Button -->
+    <button
+      type="button"
+      onclick="document.getElementById('allocation-modal')?.close()"
+      class="absolute right-5 top-5 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/60 transition-colors hover:border-white/30 hover:text-white"
+      aria-label="Close dialog"
+    >
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Header Pill -->
+    <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-orange/30 bg-orange/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange">
+      <span class="h-1.5 w-1.5 rounded-full bg-orange"></span>
+      Fast-Lane Allocation
+    </div>
+
+    <!-- Modal Title -->
+    <h2 id="modal-title" class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+      Reserve Infrastructure Allocation
+    </h2>
+
+    <!-- Allocation Form -->
+    <form action={formEndpoint} method="POST" class="mt-6 space-y-4 sm:space-y-5">
+      <input type="hidden" name="_next" value={calendarHref} />
+      <input type="hidden" name="_subject" value="New Fast-Lane Infrastructure Allocation Lead" />
+
+      <!-- Allocation Tier -->
+      <div>
+        <label for="allocation" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+          Selected Infrastructure Allocation
+        </label>
+        <div class="mt-2 rounded-xl border border-orange/40 bg-charcoal px-4 py-3 font-medium text-orange">
+          <input
+            type="text"
+            id="allocation"
+            name="allocation"
+            value={defaultAllocation}
+            readonly
+            class="w-full bg-transparent text-sm font-semibold text-orange outline-none"
+          />
+        </div>
+      </div>
+
+      <!-- Full Name & Work Email -->
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label for="modal-name" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+            Full Name *
+          </label>
+          <input
+            type="text"
+            id="modal-name"
+            name="name"
+            required
+            placeholder="Alex Carter"
+            class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white placeholder-white/30 focus:border-orange focus:ring-1 focus:ring-orange"
+          />
+        </div>
+        <div>
+          <label for="modal-email" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+            Work Email *
+          </label>
+          <input
+            type="email"
+            id="modal-email"
+            name="email"
+            required
+            placeholder="alex@agency.com"
+            class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white placeholder-white/30 focus:border-orange focus:ring-1 focus:ring-orange"
+          />
+        </div>
+      </div>
+
+      <!-- Company & WhatsApp -->
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label for="modal-company" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+            Agency / Company Name *
+          </label>
+          <input
+            type="text"
+            id="modal-company"
+            name="company"
+            required
+            placeholder="Acme Growth"
+            class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white placeholder-white/30 focus:border-orange focus:ring-1 focus:ring-orange"
+          />
+        </div>
+        <div>
+          <label for="modal-whatsapp" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+            WhatsApp (Fast-Lane) *
+          </label>
+          <input
+            type="tel"
+            id="modal-whatsapp"
+            name="whatsapp"
+            required
+            placeholder="+44 7351 678783"
+            class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white placeholder-white/30 focus:border-orange focus:ring-1 focus:ring-orange"
+          />
+        </div>
+      </div>
+
+      <!-- Payment Settlement Dropdown -->
+      <div>
+        <label for="modal-payment" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+          Preferred Payment Settlement
+        </label>
+        <select
+          id="modal-payment"
+          name="payment_settlement"
+          class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white focus:border-orange focus:ring-1 focus:ring-orange"
+        >
+          <option value="stripe">Stripe / Credit & Debit Card</option>
+          <option value="wire">Bank Wire / ACH Settlement</option>
+          <option value="usdc">USDC / Crypto Settlement</option>
+        </select>
+      </div>
+
+      <!-- Notes / Specific Requirements -->
+      <div>
+        <label for="modal-notes" class="block text-xs font-semibold uppercase tracking-wider text-white/50">
+          Notes / Specific Requirements (Optional)
+        </label>
+        <textarea
+          id="modal-notes"
+          name="notes"
+          rows="3"
+          placeholder="Target domain names, preferred activation timelines, etc."
+          class="mt-2 w-full rounded-xl border border-white/10 bg-charcoal px-4 py-3 text-sm text-white placeholder-white/30 focus:border-orange focus:ring-1 focus:ring-orange"
+        ></textarea>
+      </div>
+
+      <!-- Submit Action -->
+      <button
+        type="submit"
+        class="w-full rounded-xl bg-orange px-6 py-4 text-center text-sm font-bold text-white shadow-lg shadow-orange/25 transition-transform duration-200 hover:scale-[1.01] active:scale-[0.99]"
+      >
+        Generate Allocation Invoice →
+      </button>
+    </form>
+  </div>
+</dialog>

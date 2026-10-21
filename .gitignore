@@ -1,3 +1,10 @@
 node_modules
 .kilo
 Marketio_Main_3.0.code-workspace
+/.kilo
+/.roo
+.gitignore
+.env
+.env.*
+!.env.example
+

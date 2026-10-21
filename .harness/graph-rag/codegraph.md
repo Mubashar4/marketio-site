@@ -7,9 +7,9 @@
 
 | Metric | Value |
 |---|---|
-| Nodes | 29 (4 spec · 5 asset · 2 cfg · 1 layout · 3 component · 1 lib · 12 page · 1 style) |
-| Edges | 50 |
-| Site source files | 19 (`src/` populated with solutions, blog, legal, careers, contact) |
+| Nodes | 30 (4 spec · 5 asset · 2 cfg · 1 layout · 4 component · 1 lib · 12 page · 1 style) |
+| Edges | 51 |
+| Site source files | 20 (`src/` populated with solutions, blog, legal, careers, contact, components) |
 | Graph health | ACTIVE |
 
 ## Nodes
@@ -38,6 +38,7 @@
 - `cmp:src/components/Navbar.astro` — [`src/components/Navbar.astro`](../../src/components/Navbar.astro)
 - `cmp:src/components/Footer.astro` — [`src/components/Footer.astro`](../../src/components/Footer.astro)
 - `cmp:src/components/HeroCanvas.astro` — [`src/components/HeroCanvas.astro`](../../src/components/HeroCanvas.astro) — animated autonomous agent pipeline: Prospect→Engage→Book→Close (vanilla JS)
+- `cmp:src/components/AllocationModal.astro` — [`src/components/AllocationModal.astro`](../../src/components/AllocationModal.astro) — zero-JS infrastructure reservation dialog (Fast-Lane intake via Formspree)
 
 ### lib (shared helper)
 - `cmp:src/lib/schema.js` — [`src/lib/schema.js`](../../src/lib/schema.js) — single JSON-LD generator
@@ -69,6 +70,7 @@ Only SPEC-defined relations appear here ([`SPEC.md`](SPEC.md)):
 | `page:/` | belongs-to | `lay:src/layouts/BaseLayout.astro` |
 | `page:/` | renders | `cmp:src/components/Navbar.astro` |
 | `page:/` | renders | `cmp:src/components/HeroCanvas.astro` |
+| `page:/` | renders | `cmp:src/components/AllocationModal.astro` |
 | `page:/` | renders | `cmp:src/components/Footer.astro` |
 | `page:/careers` | belongs-to | `lay:src/layouts/BaseLayout.astro` |
 | `page:/careers` | renders | `cmp:src/components/Navbar.astro` |
@@ -135,3 +137,4 @@ Only SPEC-defined relations appear here ([`SPEC.md`](SPEC.md)):
 | 2026-08-29 | Four navbar pages built: added `page:/deliverability`, `page:/ai-automation`, `page:/pipeline-sync` (all with Service JSON-LD via new `service()` helper in schema.js + `schema="service"` prop in BaseLayout), and `page:/blog` index with placeholder posts. 12 pages total. Build passes. | marketio-code |
 | 2026-10-10 | Spec reconciliation & graph audit: aligned architecture.md target tree (pipeline-sync, 5 legal pages, careers, contact); fixed codegraph.md node count (29) and removed duplicate/meta edges. | marketio-architect |
 | 2026-10-10 | Crawler and deployment assets activated: public/llm.txt, public/ai-context.json, public/_headers, public/_redirects created; codegraph nodes and edges updated. | marketio-code |
+| 2026-10-21 | Fast-Lane allocation intake & Synclead calendar migration: built AllocationModal.astro (Formspree endpoint xgaojrew), updated contact.astro form schema, switched Calendly to Synclead booking URL across all 12 pages/components/assets, added direct WhatsApp (+447351678783) and removed Telegram, adjusted CSP headers for Formspree. Build passes. | marketio-code |
